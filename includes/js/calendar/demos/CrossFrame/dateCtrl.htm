@@ -1,0 +1,22 @@
+<HTML>
+<HEAD><TITLE></TITLE>
+</HEAD>
+<BODY leftmargin=0 topmargin=0 bottommargin=0 rightmargin=0>
+
+<script language="JavaScript">
+function popCalInMainFrame(dateCtrl) {
+	var w=self.top.main.gfPop;
+	w.fPopCalendar(dateCtrl,null,null,null,[70,0,true]);	// pop calendar at fixed location
+}
+</script>
+
+
+<FORM name="demoform">
+&nbsp;Date Field: <input name="dc" value="" size="11"><a href="javascript:void(0)" onclick="popCalInMainFrame(document.demoform.dc);return false;" ><img name="popcal" align="absmiddle" src="calbtn.gif" width="34" height="22" border="0" alt=""></a>
+</FORM>
+
+
+
+</BODY>
+</HTML>
+

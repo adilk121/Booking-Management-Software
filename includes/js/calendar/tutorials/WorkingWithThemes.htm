@@ -1,0 +1,197 @@
+<html>
+<head>
+<title>Themes</title>
+<link href="style-1.0/css/tigris.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+.style3 {color: #FF0000; font-weight: bold; font-style: italic; }
+-->
+</style>
+</head>
+
+<body>
+<div class="app"> 
+  <h3>Working with themes</h3>
+  <p>One of the most powerful feature of CalendarXP is the theme support. Themes 
+    are like clothes of the calendar and can be switched back and forth to create 
+    different looks in seconds. In addition to using the bundled high quality 
+    themes you may also customize your own to perfectly match the tone of your 
+    web page.</p>
+  <h4>What's in a theme?</h4>
+  <p>A theme defines all the customizable options that control the look&amp;feel 
+    of the calendar, like colors, fonts, sizes and layout. A theme usually consists 
+    of 5 parts - don't be scared, it's actually quite simple to deal with them.</p>
+  <ul>
+    <li> <strong>theme-name.js</strong> file has all kinds of advanced options 
+      defined in javascript, most of them are static options. </li>
+    <li> <strong>theme-name.css</strong> file is the CSS file used to render the 
+      fonts, border and other CSS styles. </li>
+    <li> <strong>calendar tag</strong> consists of one or more iframe/layer tags 
+      that build up the calendar body, as detailed in the HelloWorld tutorial. 
+    </li>
+    <li> <strong>plugins.js</strong> file defines all dynamic functions that extend 
+      the calendar behaviors, e.g. the artificial dropdowns in &quot;fancy&quot; 
+      theme. It's detailed in the <a href="PluginsSDK.htm">PluginsSDK tutorial</a>.</li>
+    <li><strong>graphic files</strong> used in the theme, like button images and 
+      so on.</li>
+  </ul>
+  <p>As a simplest example the &quot;normal&quot; theme has a normal.js, a normal.css, a plugins.js and a simple calendar tag.</p>
+  <p><strong>We always suggest you put all calendar related files into a separate directory and set the src of the calendar tags to reference them. This makes them more like a self-contained component and is easy for you to maintain in future.</strong><br>
+  </p>
+  <h4>Implementing/Install a calendar with the specific theme</h4>
+  <p>Usually you'll need to follow these steps:</p>
+
+<ol>
+    <li>Opt a theme that you want to use, suppose it's the &quot;outlook&quot; 
+      theme.</li>
+    <li>Copy the calendar engine files from the <code>engines</code> directory to the <code>themes/outlook</code> directory.</li>
+    <li>Copy the <code>agenda.js</code> file from the HelloWorld demo directory to the <code>themes/outlook</code> directory.</li>
+    <li>Open the <code>xxxTemplate.htm</code> in your browser to see how the theme looks like. </li>
+    <li>Pick up the calendar tags from the <code>xxxTemplate.htm</code> and integrate into your own page.</li>
+    <li>Modify the <code>src</code> property of the calendar tag on your page to have <code>themes/outlook</code> in the path. You don't need to change anything if your page is also located in the <code>themes/outlook</code> directory.</li>
+    <li>If you decide to put the theme files in a separate location, you'll have to specify the absolute web path in 
+    the name &amp; id of the calendar tag.</li>
+    <li>Setup the <code>gfPop.fPopCalendar()</code> function in the onclick events 
+      of HTML tags so that it can be triggered. </li>
+</ol>
+ 
+  <p><em><span class="style1">Note</span>: The location of the theme files is relative to the location of the engine 
+    file, it's NOT relative to the web page containing the calendar. Therefore you'd 
+    better use the absolute path  to avoid confusion if the theme files are located in a different dir. A good sample could be:</em></p>
+
+  <blockquote>
+
+    <div class="dottedBox"> 
+      <p><code>&lt;IFRAME width=102 height=100 name=&quot;gToday:/cal/themes/supermini:/cal/agenda/agenda.js&quot; 
+          id=&quot;gToday:/cal/themes/supermini:/cal/agenda/agenda.js&quot; src=&quot;ipopeng.htm&quot; 
+          scrolling=&quot;no&quot; frameborder=&quot;0&quot; style=&quot;visibility:visible; 
+          z-index:999; position:absolute; top:-500px; left:-500px;&quot;&gt;<br>
+          &lt;LAYER name=&quot;gToday:/cal/themes/supermini:/cal/agenda/agenda.js&quot; src=&quot;npopeng.htm&quot; background=&quot;npopeng.htm&quot;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/LAYER&gt;<br>
+          &lt;/IFRAME&gt;</code></p>
+    </div>
+
+</blockquote>
+<p><em><span class="style1">Note</span>:</em> <em>If you don't want any agenda or holiday, you may skip step 3. However, you MUST also remove the agenda.js parameter from the name &amp; id of the calendar tag. </em></p>
+<p>&nbsp;</p>
+<h4>Switching among different themes</h4>
+  <p>It's quite easy to change the look of the calendar. In most cases, you just need to 
+    change the &quot;theme-name&quot; in the name &amp; id properties and copy 
+    the relevant files over. 
+    Please check out the HelloWorld tutorial for examples. e.g. change the above calendar sample from supermini theme to normal theme with no agenda file:<em></em></p>
+  <blockquote>
+    <div class="dottedBox">
+      <p><code>&lt;IFRAME width=102 height=100 name=&quot;gToday:/cal/themes/normal&quot; id=&quot;gToday:/cal/themes/normal&quot; src=&quot;ipopeng.htm&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; style=&quot;visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;&quot;&gt;<br>
+&lt;LAYER name=&quot;gToday:/cal/themes/normal&quot; src=&quot;npopeng.htm&quot; background=&quot;npopeng.htm&quot;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/LAYER&gt;<br>
+&lt;/IFRAME&gt;</code></p>
+    </div>
+  </blockquote>
+  <p>&nbsp;</p>
+  <h4>Customizing your own theme</h4>
+  <p>Although quite a few high quality themes have been provided with the release 
+    package, they wouldn't cover everybody's favor. So let's brief on how to customize 
+    it now.</p>
+  <p>A calendar comprises 3 sections - top, middle and bottom. They are actually 
+    3 table cells in one vertical column. </p>
+
+<ul>
+  <li> 
+    The top section is usually stuffed with navigation controls 
+      (prev, next arrow/button) and month/year selectors. It's optional.
+  </li>
+  <li>The middle section is the main calendar body, containing all calendar cells.</li>
+  <li>The bottom section can be used for showing today or whatever you like. It's 
+    also optional.</li>
+</ul>
+
+  <p>We have a diagram here illustrating most CSS used in the <code>theme-name.css</code> 
+    file, as following:</p>
+  <p align="center"><img src="calDiagram.gif" width="535" height="352" border="0"></p>
+  <p>The <code>theme-name.js</code> file is another major option store. There 
+    are more than 60 options in it. The file is self-documented and you may go 
+    through and play with it simply using the Notepad. We only state several important 
+    ones here:</p>
+<ul>
+  <li> 
+    <strong>gsSplit</strong> is the separator of date string. If set it to empty string, then giMonthMode and gbPadZero will be fixed to 0 and true.</li>
+  <li><strong>giDatePos</strong> determines the date format sequence 0: D-M-Y 
+    ; 1: M-D-Y; 2: Y-M-D</li>
+  <li><strong>gbPadZero</strong> decides whether to pad the digits with 0 in the 
+    left when less than 10.</li>
+  <li><strong>giMonthMode</strong> is the month format. 0: digits ; 1: full name 
+    from gMonths; &gt;=2: abbreviated month name in specified length.</li>
+  <li><strong>gbShortYear</strong> is the year format. true: 2-digits; false: 
+    4-digits</li>
+  <li><strong>gbAutoPos</strong> decides whether to enable auto-adpative positioning 
+    or not.</li>
+  <li> <strong>gbPopDown</strong> if set to true: pop the calendar below the dateCtrl; 
+    if false: pop above as long as gbAutoPos is false.</li>
+  <li> <strong>gbAutoClose</strong> decides whether to close the calendar after 
+    selecting a date.</li>
+  <li> <strong>gPosOffset</strong> is used as offsets to adjust the pop-up postion, 
+    in format [leftOffset, topOffset].</li>
+  <li> <strong>gbFixedPos</strong> when set to true: pop the calendar absolutely 
+    at gPosOffset; when false: use gPosOffset as relative offsets to the localizer.<br>
+  </li>
+</ul>
+  <p>Other common options are:</p>
+  <ul>
+    <li><strong>gAgendaMask</strong> sets a pattern that will mask out the irrelevant 
+      agenda properties in order to give the theme a uniform look, especially 
+      userful when sharing agendas across calendars with different themes.</li>
+    <li> <strong>gBegin, gEnd</strong> are to set the date range of the calendar. 
+      e.g. The following settings will disable all past dates and dates after 
+      Dec 10, 2020.<br>
+      <div class="dottedBox"><code>var gBegin=gToday;<br>
+        var gEnd=[2020,12,10];</code></div>
+    </li>
+    <li><strong>giFirstDOW</strong> sets the calendar to start on different weekday. e.g. 0 will 
+	make Sunday the first day, while 1 will make Monday the first day.</li>
+    <li><strong>giCellWidth, giCellHeight</strong> defines the width and height 
+      of a calendar cell. Note you are also required to adjust the font size in order to 
+      make a tiny calendar.</li>
+    <li><strong>gbHideTop, gbHideBottom</strong> control the appearance of top 
+      and bottom sections.</li>
+    <li><strong>giDCStyle</strong> sets the top section to 3 predefined layouts. 
+      <ul>
+        <li> <strong>giDCStyle=0</strong>, the engine will create 2 HTML &lt;select&gt; 
+          tags as the month/year selector, and use the HTML code in <code>gsNavPrev/gsNavNext</code> 
+          to create the month navigators. </li>
+        <li><strong>giDCStyle=1</strong>, the engine will create the center part 
+          with <code>gsCalTitle</code>, and use the HTML code in <code>gsNavPrev/gsNavNext</code> 
+          to create the month navigators.</li>
+        <li><strong>giDCStyle=2</strong>, the engine will create the whole top 
+          section with <code>gsCalTitle</code> only.</li>
+      </ul>
+    </li>
+    <li><strong>gdSelect</strong> sets the selected date.</li>
+    <li><strong>gbShrink2fit</strong> sets whether to remove the bottom week line 
+      if all days in it belong to next month.</li>
+    <li><strong>gcSat, gcSatBG, gcSun, gcSunBG</strong> set the font and background 
+      colors of Saturday and Sunday.</li>
+    <li><strong>giShowOther</strong> controls whether to show the days/agendas 
+      in previous and next month sections.</li>
+    <li><strong>giMarkToday, giMarkSelected</strong> set the display of today's 
+      date and the selected date in more than 10 different effects.</li>
+    <li><strong>gbShareAgenda</strong> determines whether to create a global agenda 
+      store and connect the local instance to it so that all calendars on the 
+      same page can share the same agenda store. It works with the agenda parameter 
+      detailed in the <a href="SetupAgendas.htm">Setup Agendas &amp; Holidays 
+      tutorial</a>.</li>
+  </ul>
+<p><br>
+  <span class="style3">Note</span><em>: </em></p>
+  <ol>
+    <li><em>most of the font color (fgcolor) options in the theme-name.js file can be set to &quot;&quot;(empty string) - which has a special effect of making the fonts invisible and disabling any action of that date. </em></li>
+    <li><em>the border of the calendar cell is not implemented in CSS, instead, it's controlled via the box effect, bgcolor and the cellpadding of the gsInnerTable option in the theme. This is to achieve cross-browser effect even on the older browsers like NN4. We have a FAQ on how to customize the border size. </em></li>
+  </ol>
+  <hr size="1">
+  <div align="right"><font size=-2><em>Copyright&copy; 2003-2007 Idemfactor Solutions, 
+    Inc. All rights reserved.</em></font></div>
+  <p>&nbsp;</p>
+</div>
+</body>
+</html>

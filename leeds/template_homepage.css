@@ -1,0 +1,35 @@
+
+.sahilkhan {
+}
+.hclatestbuyoffers .subheading, .sahilkhan .subheading {
+}
+.hclatestbuyoffers .subheading .text, .sahilkhan .subheading .text {
+	line-height:25px;
+	padding:0 3px;
+}
+.hclatestbuyoffers .subheading .text .alink, .sahilkhan .subheading .text .alink {
+	font-weight:bold;
+	line-height:25px;
+	margin-left:5px;
+}
+.hclatestbuyoffers ul, .sahilkhan ul {
+}
+.hclatestbuyoffers ul.latest_container, .sahilkhan ul.latest_container {
+	overflow:hidden;
+	border:solid none none;
+	height:200px;
+	margin:0;
+	padding:0;
+}
+.hclatestbuyoffers ul li.latest_row_b, .sahilkhan ul li.latest_row_s {
+	padding:6px 5px 5px 7px;
+	border-bottom:1px solid #e7f3ff;
+	height:14px;
+}
+.hclatestbuyoffers ul li.latest_row_b_hover, .sahilkhan ul li.latest_row_s_hover {
+	background-color:#E7F3FF;
+	cursor:hand;
+	cursor:pointer;
+	height:14px;
+}
+

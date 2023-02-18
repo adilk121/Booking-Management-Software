@@ -1,0 +1,237 @@
+<html>
+<head>
+<title>Plugins SDK</title>
+<link href="style-1.0/css/tigris.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="app"> 
+  <h3>Plugins SDK</h3>
+  <p>The <code>plugins.js</code> is a place to extend the behaviors of the calendar. 
+    The plugin file name is defined in the name &amp; id of the calendar tag. 
+    If nothing specified, it will use the default value <code>plugins.js</code>. 
+    Some themes need special plugin functions to create customized behaviors like 
+    artificial internal selectors and so on. Therefore, we also treat it as part 
+    of the theme.</p>
+  <h4>Build-in event handlers</h4>
+  <p>1st, the <code>fOnChange()</code> callback function. Once defined, it will 
+    be invoked every time the calendar about to get changed or selected. Moreover, 
+    return a <code>true</code> value from it will cancel the current action causing 
+    the change, as if there were nothing happened. The reference to the <code>event</code> 
+    object is passed in as the <code>e</code> parameter. Since it could be null 
+    value, you should check before using.</p>
+<blockquote> 
+    <div class="dottedBox"><code>///////////// Calendar Onchange Handler ////////////////////////////<br>
+      // It's triggered whenever the calendar gets changed to y(ear),m(onth),d(ay)<br>
+      // d = 0 means the calendar is about to switch to the month of (y,m); <br>
+      // d &gt; 0 means a specific date [y,m,d] is about to be selected.<br>
+      // e is a reference to the triggering event object<br>
+      // Return a true value will cancel the change action.<br>
+      // NOTE: DO NOT define this handler unless you really need to use it.<br>
+      ////////////////////////////////////////////////////////////////////<br>
+      function fOnChange(y,m,d,e) {<br>
+      &nbsp;&nbsp;.... put your code here ....<br>
+      return false; // return true to cancel the change.<br>
+      }</code></div>
+</blockquote>
+  <p>Another callback function is the <code>fAfterSelected()</code>, which is triggered only 
+    after the date gets selected. The reference to the <code>event</code> object 
+    is passed in as the <code>e</code> parameter. Since it could be null value, 
+    you should check before using.</p>
+<blockquote> 
+    <div class="dottedBox"><code>///////////// Calendar AfterSelected Handler ///////////////////////<br>
+      // It's triggered whenever a date gets fully selected.<br>
+      // The selected date is passed in as y(ear),m(onth),d(ay)<br>
+      // e is a reference to the triggering event object<br>
+      // NOTE: DO NOT define this handler unless you really need to use it.<br>
+      ////////////////////////////////////////////////////////////////////<br>
+      function fAfterSelected(y,m,d,e) {<br>
+      &nbsp;&nbsp;.... put your code here ....<br>
+      }</code></div>
+</blockquote>
+  <p>The 3rd one is the <code>fOnDrag()</code>, which is triggered during mousedown and mousemove. 
+    It tries to utilize mousedown and mouseover events to create a cross-browser 
+    drag event. Note it's not a guaranteed callback and not work in all browsers. 
+    The reference to the <code>event</code> object is passed in as the <code>e</code> 
+    parameter. Since it could be <code>null</code> value, you should check before using. </p>
+  <p>The other things need to be mentioned is the aStat parameter. Since different browsers have different way or capability in supporting mouse dragging event, we set up a common way here to simulate it:</p>
+  <ol>
+    <li>Whenever a mousedown is detected on a calendar cell, the fOnDrag will be called with <code>aStat</code> set to 0. At this stage, you could prepare a dragging start.</li>
+    <li>Later, if the left mouse-button is not released and a mouseover is detected on another calendar cell, the fOnDrag will be called with <code>aStat</code> set to 1. At this stage, you know the user is dragging the mouse.</li>
+    <li>Finally, if any mouseup is detected within or outside the calendar panel, the fOnDrag will again be called with <code>aStat</code> set to 2. The (y,m,d) will all be 0 if mouseup is not happened on a calendar cell. However, chances are that the user releases the mouse button outside the browser and certain browsers don't report such out-of-bound mouseup event at all. In such case there will be no callback upon fOnDrag with <code>aStat</code> of 2.</li>
+  </ol>
+  <blockquote> 
+    <div class="dottedBox"><code>///////////// Calendar Cell OnDrag Handler ///////////////////////<br>
+      // It triggered when you try to drag a calendar cell. (y,m,d) is the cell 
+      date. <br>
+      // aStat = 0 means a mousedown is detected (dragstart)<br>
+      // aStat = 1 means a mouseover between dragstart and dragend is detected 
+      (dragover)<br>
+      // aStat = 2 means a mouseup is detected (dragend)<br>
+      // e is a reference to the triggering event object<br>
+      // NOTE: DO NOT define this handler unless you really need to use it.<br>
+      ////////////////////////////////////////////////////////////////////<br>
+      function fOnDrag(y,m,d,aStat,e) {<br>
+      &nbsp;&nbsp;.... put your code here ....<br>
+      }</code></div>
+</blockquote>
+  <p>The 4th one is the <code>fOnResize()</code>, which is triggered after a short delay when 
+    the calendar finished drawing and before resizing itself to fit the change. 
+    You may add some code here to re-adjust the contents of the calendar.</p>
+  <blockquote> 
+    <div class="dottedBox"><code>////////////////// Calendar OnResize Handler 
+      ///////////////////////<br>
+      // It's triggered after the calendar panel has finished drawing.<br>
+      // NOTE: DO NOT define this handler unless you really need to use it.<br>
+      ////////////////////////////////////////////////////////////////////<br>
+      // function fOnResize() {<br>
+      &nbsp;&nbsp;.... put your code here ....<br>
+      }</code></div>
+  </blockquote>
+  <p>The 5th one is the <code>fOnWeekClick()</code>, which is triggered when the week number is clicked. You may use it to arrange specific actions when user clicks on the week number. Of course, you should first set the <code>giWeekCol</code> option to 0 so that the week numbers can be displayed. </p>
+  <blockquote>
+    <div class="dottedBox"><code>////////////////// Calendar fOnWeekClick Handler ///////////////////////<br>
+      // It's triggered when the week number is clicked.<br>
+      // NOTE: DO NOT define this handler unless you really need to use it.<br>
+      ////////////////////////////////////////////////////////////////////<br>
+       function fOnWeekClick(year, weekNo) {<br>
+      &nbsp;&nbsp;.... put your code here ....<br>
+    }</code></div>
+  </blockquote>
+  <p>The 6th one is the <code>fIsSelected()</code> call-back, which is triggered for every date passed in as y(ear) m(onth) d(ay). When it returns a <code>true</code> value, the engine will render that specific date using the &quot;select series&quot; theme options, like giMarkSelected, gcFGSelected, gcBGSelected and guSelectedBGImg. If not defined here, the engine will automatically create one that checks the <code>gdSelect</code> only. Therefore, you can always bank on using it.</p>
+  <blockquote>
+    <div class="dottedBox"><code>////////////////// Calendar fIsSelected Callback ///////////////////////<br>
+      // It's triggered for every date passed in as y(ear) m(onth) d(ay). And if <br>
+      // the return value is true, that date will be rendered using the giMarkSelected,<br>
+      // gcFGSelected, gcBGSelected and guSelectedBGImg theme options.<br>
+      // NOTE: If NOT defined here, the engine will create one that checks the gdSelect only.<br>
+      ////////////////////////////////////////////////////////////////////<br>
+      function fIsSelected(y,m,d) {<br>
+       &nbsp;&nbsp;return gdSelect[2]==d&amp;&amp;gdSelect[1]==m&amp;&amp;gdSelect[0]==y;<br>
+       }</code></div>
+  </blockquote>
+  <p>The 7th one is the fParseInput(), which is used to parse the input string stored in the <code>value</code> property of gdCtrl. It's expected to return an array of [y,m,d] to indicate the parsed date or <code>null</code> if the input str can't be parsed as a date. If not defined, the engine will automatically create one that is equivalent to the fParseDate(). Therefore, you can always bank on the fParseInput() instead of using fParseDate().</p>
+  <blockquote>
+    <div class="dottedBox"><code>////////////////// Calendar fParseInput Handler ///////////////////////<br>
+      // Once defined, it'll be used to parse the input string stored in gdCtrl.value.<br>
+      // It's expected to return an array of [y,m,d] to indicate the parsed date,<br>
+      // or null if the input str can't be parsed as a date.<br>
+      // NOTE: If NOT defined here, the engine will create one matching fFormatDate().<br>
+      ////////////////////////////////////////////////////////////////////<br>
+      function fParseInput(str) {<br>
+      &nbsp;&nbsp;<code>.... you may parse with your extra format here and then delegate the rest to the built-in fParseDate() ....</code><br>
+    }</code></div>
+  </blockquote>
+  <p>The 8th one is the fFormatInput(), which is used to format the selected date  y(ear) m(onth) d(ay) into the <code>value</code> property of gdCtrl. It's expected to return a formated date string.  If not defined, the engine will automatically create one that is equivalent to the fFormatDate(). Therefore, you can always bank on the fFormatInput() instead of using fFormatDate(). </p>
+  <blockquote>
+    <div class="dottedBox"><code>////////////////// Calendar fFormatInput Handler ///////////////////////<br>
+      // Once defined, it'll be used to format the selected date - y(ear) m(onth) d(ay)<br>
+      // into gdCtrl.value.<br>
+      // It's expected to return a formated date string.<br>
+      // NOTE: If NOT defined here, the engine will create one matching fFormatDate().<br>
+      ////////////////////////////////////////////////////////////////////<br>
+      function fFormatInput(y,m,d) {<br>
+&nbsp;&nbsp;<code><code>.... you may call the built-in fFormatDate() first and then apply your own format to the return value ....</code></code><br>
+    }</code></div>
+  </blockquote>
+  <p>The 9th one is the <code>fOnDoWClick()</code> call-back, which is triggered when the week title (day of week) is clicked. It may be useful if you want to select dates by day-of-week (per column). </p>
+  <blockquote>
+    <div class="dottedBox"><code>////////////////// Calendar fOnDoWClick Handler ///////////////////////<br>
+      // It's triggered when the week head (day of week) is clicked.<br>
+      // dow ranged from 0-6 while 0 denotes Sunday, 6 denotes Saturday.<br>
+      // NOTE: DO NOT define this handler unless you really need to use it.<br>
+      ////////////////////////////////////////////////////////////////////<br>
+      function fOnDoWClick(year, month, dow) {<br>
+      <code>&nbsp;&nbsp;.... put your code here ....</code>      <br>
+    }</code></div>
+  </blockquote>
+  <p>The 10th one is the <code>fOnload()</code> call-back, which is triggered when the calendar engine (iframe) is fully loaded. It may be useful if you want to perform certain action only after the calendar is fully rendered. </p>
+  <blockquote>
+    <div class="dottedBox"><code>////////////////// Calendar fOnload Handler ///////////////////////<br>
+      // It's triggered when the calendar engine is fully loaded by the browser.<br>
+      // NOTE: DO NOT define this handler unless you really need to use it.<br>
+      ////////////////////////////////////////////////////////////////////<br>
+      function fOnload() {<br>
+      <code>&nbsp;&nbsp;.... put your code here ....</code> <br>
+    }</code></div>
+  </blockquote>
+  <p></p>
+  <p>These are very useful features. Please check out the demos for good examples. </p>
+  <h4>Some predefined objects can be used in plugins/themes to aid your customization</h4>
+  <ul>
+    <li><strong>gContainer</strong> is a global reference to the parent window 
+      that contains the calendar engine. <strong><em>It can be used to access 
+      objects outside the engine context</em></strong>, e.g form fields or frames 
+      in your web page.</li>
+    <li><strong>gfSelf</strong> is a reference of the calendar engine frame itself.</li>
+    <li><strong>gToday</strong> is a 3-element array containing the current date 
+      of the operating system, in the format of [year, month, day].</li>
+    <li><strong>gCurMonth</strong> is a 2-element array controls the month to 
+      be shown in the calendar panel, in the format of [year, month].</li>
+    <li><strong>gTheme</strong> is actually the whole parameter array parsed from 
+      the name&amp;id of the calendar tag.</li>
+    <li><strong>ua</strong> is the navigator.userAgent string in all lower-case.</li>
+    <li><strong>gdSelect</strong> is an array that stores the current selected date in format [year, month, day]. NOTE that if you want to update it programatically, you should better do it via the <strong>fUpdSelect()</strong> function to avoiding potential inconsistency. </li>
+    <li><strong>gbCacheAgenda</strong> is a boolean that is by default set to <code>true</code>, which means the calendar engine will employ certain approach to prevent the browser from caching the agenda file. </li>
+    <li><strong>gdCtrl</strong> is a reference to the outside <code>dateCtrl</code> 
+      object. It's passed in via the fPopCalendar() function.</li>
+    <li><strong>giShowInterval</strong> is a value that determines the speed of auto-traversing when you holding down the month navigation button. It's by default set to delay 250ms.</li>
+  </ul>
+  <h4>Some system functions may also be much helpful</h4>
+  <ul>
+    <li><strong>fShowCal(x,y)</strong> is used to show the calendar panel at designated location. </li>
+    <li><strong>fHideCal()</strong> is used to hide (close) the calendar panel. It's needed to program a &quot;close&quot; button. </li>
+    <li><strong>fGetXY(tag,offset)</strong> will return the position [x,y] of the tag with the offset adjustment.</li>
+    <li><strong>fRepaint()</strong> is used to refresh the calendar panel so that 
+    the latest update of agenda can be revealed.</li>
+    <li><strong>fUpdSelect(y,m,d)</strong> marks the (y,m,d) as the selected date. </li>
+    <li><strong>fAddEvent()</strong>, <strong>fGetEvent()</strong> and <strong>fRemoveEvent()</strong> 
+    are used to set, get and delete disparate agenda events.</li>
+    <li><strong>fGetAgenda(y,m,d,taint)</strong> will return the constrained agenda 
+      &amp; holiday events if <strong>taint</strong> is true; or non-constrained 
+      if <strong>taint</strong> is false. Constrained means that for all dates 
+      outside the current panel view a null value or modified event will be returned 
+      according to the <code>giShowOther</code> option. Non-constrained means 
+      simply return the result from <code>fHoliday()</code> excluding the dates 
+      out of theme range.</li>
+    <li><strong>fSetCal(y,m,d,bTriggerOnChg,e)</strong> will set selected date 
+      to the specific date. If <strong>d</strong> is 0, the calendar will be switched 
+      to the specific month only. <strong>bTriggerOnChg</strong> determines whether 
+      the<code> fOnchange()</code> plugin will be called or not. It's very userful to avoid looping calls when coordinating among multiple calendars. <strong>e</strong> 
+      is optional but should be set to the reference of an event object if any 
+      event property were to be used by specific plugins. It'll return false if 
+      designated date is out of selectable range.</li>
+    <li><strong>fSetDate(y,m,d,taint,e)</strong> is somewhat like <strong>fSetCal()</strong>, 
+      but it will check against agenda (agenda range determined by taint flag) 
+      to activate the associated actions if applicable. <strong>taint</strong> 
+      and <strong>e</strong>vent are optional and usually omitted. It'll return 
+      false if designated date is out-of-range or has a <code>null</code> agenda 
+      action.</li>
+    <li><strong>fPrevMonth(e)</strong> and <strong>fNextMonth(e)</strong> are 
+      used to switch the calendar to previous or next month.<strong> e</strong> 
+      is optional but should be set to the reference of event object if any event 
+      property were to be accessed in the plugins.</li>
+    <li><strong>showPrevMon()</strong>, <strong>showNextMon()</strong> and <strong>stopShowMon()</strong> are set to trigger/stop the auto-traverse feature. Generally speaking, set the first two in onmousedown event to start auto-traversing at the speed determined by <strong>giShowInterval</strong>, and set the last one in onmouseup and onmouseout to stop. NOTE that you also need to set the id of the tag, used in theme option gsNavPrev or gsNavNext, to be &quot;navPrev&quot; or &quot;navNext&quot; respectively. </li>
+    <li><strong>fDate2W(y,m,d)</strong> converts the specific date to [year, weekOfYear, 
+      Nth-dayOfWeek]. weekOfYear is ranged from 1 to 53; Nth-dayOfWeek is ranged 
+    from 1 to 7. <strong>fW2Date(y,w,wd)</strong> is the reverse function.</li>
+    <li><strong>fGetDateByDOW(y,m,q,dow) </strong>returns the date of the month (y,m), which is the q-th day-of-week of month (y,m). e.g. fGetDateByDOW(2004,1,1,0) means to get the first Sunday of January 2004. <strong>q</strong> ranges from 1 to 5, 5 meaning the last dow of the month. <strong>dow</strong> ranges from 0 to 6 and the return value ranges from 1 to 31. </li>
+    <li><strong>fLoadScript(url)</strong> loads a javascript file from the designated URL dynamically and execute it within the calendar context. Note currently it's only supported by IE5+(except Mac), NS6+, Mozilla and Opera7+.</li>
+    <li><strong>fParseDate(str)</strong> will parse the string and return a [y,m,d] array or <code>null</code> if it can't be parsed according to the date format options in the employed theme. You should always use <code>fParseInput(str)</code>, which will call the fParseDate() by default, in your code whenever you want to parse the input string complying with the theme settings, unless you are programming the <code>fParseInput(str)</code> plugin itself.</li>
+    <li><strong>fFormatDate(y,m,d)</strong> will return a formated date string according to the date format options in the employed theme. You should instead use <code>fFormatInput(y,m,d)</code>, which will call the fFormatDate() by default, in your code whenever you want to format a date string complying with the theme settings, unless you are programming the fFormatInput() plugin itself.</li>
+  </ul>
+  <h4>Override theme options in plugins.js</h4>
+  <p>Because theme options are loaded before the plugins, you may re-define any 
+    option of <code>theme-name.js</code> from within <code>plugins.js</code>. 
+    The benefit is that you can add additional features or make small changes 
+    without touching the standard theme. The bundled demos are using this approach 
+    to share themes.</p>
+  <p>&nbsp;</p>
+  <hr size="1">
+  <div align="right"><font size=-2><em>Copyright&copy; 2003-2007 Idemfactor Solutions, 
+    Inc. All rights reserved.</em></font></div>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+</div>
+</body>
+</html>

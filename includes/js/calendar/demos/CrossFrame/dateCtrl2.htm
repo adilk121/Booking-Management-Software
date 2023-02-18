@@ -1,0 +1,26 @@
+<HTML>
+<HEAD><TITLE></TITLE>
+</HEAD>
+<BODY>
+
+<script language="JavaScript">
+function popCalInMain(dateCtrl) {
+	var w=self.top.main.gfPop;
+	// tell the calendar engine in main frame that the localizer can be found inside layer "centerIframe", which is the frame containing this page.
+	// Please refer to HelloWorld tutorial for detailed localizer explaination.
+	w.fPopCalendar(dateCtrl,null,'centerIframe',null,[0,0]);
+}
+</script>
+
+<BR>
+<FORM name="demoform">
+&nbsp;Date Field: <input name="dc" value="" size="11"><a href="javascript:void(0)" onclick="popCalInMain(document.demoform.dc);return false;" ><img name="popcal" align="absmiddle" src="calbtn.gif" width="34" height="22" border="0" alt=""></a>
+</FORM>
+
+<P><table><tr><td>Remember to pass in the name & id of the floating frame as the 3rd parameter to fPopCalendar(). </td></tr></table>
+</P>
+<BR><BR><BR><BR><BR><BR>
+
+</BODY>
+</HTML>
+

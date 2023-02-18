@@ -1,0 +1,215 @@
+<html>
+<head>
+<title>Hello World</title>
+<link href="style-1.0/css/tigris.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+.style1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+.style2 {color: #FF0000}
+-->
+</style>
+</head>
+
+<body>
+<div class="app">
+  <h3>Hello World - The beginner's guide</h3>
+  <p>The vision of CalendarXP is to keep it simple outside while powerful inside. 
+  Most of the time, to implement a date picker on your page is as simple as appending the following tags to the bottom of your page, just above the &lt;/body&gt; tag.</p>
+    <blockquote> 
+    <div class="dottedBox"><code>&lt;iframe name=&quot;gToday:normal:agenda.js&quot; 
+      id=&quot;gToday:normal:agenda.js&quot;<br>
+      src=&quot;ipopeng.htm&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot;<br>
+      style=&quot;visibility:visible; 
+        z-index:999; position:absolute; top:-500px; left:-500px;&quot;&gt;<br>
+      &lt;LAYER name=&quot;gToday:normal:agenda.js&quot; src=&quot;npopeng.htm&quot; <code>background=&quot;npopeng.htm&quot;</code>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/LAYER&gt;<br>
+    &lt;/iframe&gt;</code> </div>
+  </blockquote>
+  <p>It consists of 2  tags: &lt;iframe&gt; and &lt;layer&gt;, but we take 
+  them all together as a whole unit - <strong>the calendar tag</strong>. NOTE that the &lt;layer&gt; tag is for Netscape 4.x only and you can remove it if you don't need to support this outdated  browser. </p>
+  <p>Then call the <code>gfPop.fPopCalendar()</code> 
+  from the onclick event of the triggering button or image. For example,</p>
+  <blockquote>
+    <div class="app">
+      <div class="dottedBox"><code>&lt;a onclick=&quot;if(self.gfPop)gfPop.fPopCalendar(document.demoform.dc);return 
+        false;&quot; <code>href=&quot;javascript:void(0)&quot;</code>&gt;&lt;span <code>class=&quot;PopcalTrigger&quot;</code>&gt;pop me&lt;/span&gt;&lt;/a&gt;</code></div>
+    </div>
+  </blockquote>
+  <p>The <code>document.demoform.dc</code> is the form field in which you want 
+    to put the selected date. It can be a text field, a hidden field, a textarea 
+  or even a button, as long as it has a <code>value</code> property. <code>gfPop</code> is the default engine context (or naming space) which can be changed in name &amp; id, more on this later. The &quot;<code>if(self.gfPop)</code>" part is used to guarantee that the calendar won't get called untill it's been fully loaded. <code></code></p>
+  <p>The <code>PopcalTrigger</code> is a marker  (you don't need to define it in any css file, it's just a marker) used to identify the trigger element so as to allow the engine show up the calendar when you click on it and hide the calendar when you click elsewhere. It's optional if you use <code>onclick</code> event to trigger the calendar. More details can be found in FAQ - <em>Why the calendar doesn't show up after I chose to use the onmousedown event instead of onclick to trigger the calendar?</em></p>
+  <p>Finally, ensure you have the following files in the same directory: (or in other directory specified by the <code>src</code> property of the calendar tag)</p>
+  <ul>
+    <li><strong>ipopeng.htm</strong> &amp; <strong>npopeng.htm</strong> - these are so-called engine files (npopeng.htm is for NN4 and only available in commercial edition). </li>
+    <li><strong>&quot;theme-name&quot;.js</strong> &amp; <strong>&quot;theme-name&quot;.css</strong> - these are theme files, e.g. normal.js &amp; normal.css in above example.</li>
+    <li><strong>plugins.js</strong> - plugins file that MUST exist. It could be empty if nothing needs to be plugged in. </li>
+    <li><strong>agenda.js</strong> - events &amp; holiday definition file. It could be empty, but you should have it unless it's not defined in the name &amp; id of the calendar tag.</li>
+  </ul>
+  <p><strong>We always suggest you put all calendar related files into a separate directory and set the src of the calendar tags to reference them. This makes them more like a self-contained component and is easy for you to maintain in future.</strong></p>
+  <p>Where is the &quot;Hello World&quot;? - Please append the following line to 
+    the <code>agenda.js</code> and select the date of Sep 23, 2002 from the calendar... Voila! </p>
+  <blockquote>
+    <div class="dottedBox"><code>fAddEvent(2002,9,23, &quot;Hello World!&quot;, 
+    &quot;alert('Hello World!')&quot;, &quot;#87ceeb&quot;, &quot;dodgerblue&quot;);</code></div>
+  </blockquote>
+    <p>Sometimes you may want to redirect the current page to another URL upon any click against a specific date, and we have pre-defined a <code>popup()</code> call in <code>plugins.js</code> to help you: </p>
+    <blockquote>
+      <div class="dottedBox">
+        <p><code>fAddEvent(2002,9,23, &quot;Hello World!&quot;, &quot;popup('http://www.calendarxp.net','_top')&quot;, &quot;#87ceeb&quot;, &quot;dodgerblue&quot;);</code></p>
+      </div>
+    </blockquote>
+    <p>Of course, you may use <code>'_blank'</code> as the 2nd parameter for the <code>popup()</code> call so as to pop up a new window instead of redirecting. In addition, numbered values like &quot;<code>#87ceeb</code>&quot; can be used anywhere that accepts literal color names. </p>
+    <h4>Date Format</h4>
+    <p>The format of the selected date is controlled by the following theme options in the &quot;theme-name&quot;.js file.</p>
+    <blockquote>
+      <div class="dottedBox">
+        <p><code>var gsSplit=&quot;.&quot;; // separator of date string.<br>
+          var giDatePos=0; // date format sequence 0: D-M-Y ; 1: M-D-Y; 2: Y-M-D<br>
+          var gbPadZero=true; // whether to pad the digits with 0 in the left when less than 10.<br>
+          var giMonthMode=3; // month format 0: digits ; 1: full name from gMonths; &gt;2: abbreviated month name in specified length.<br>
+          var gbShortYear=false; // year format true: 2-digits; false: 4-digits<br>
+        </code></p>
+      </div>
+    </blockquote>
+    <p>The above setting is equal to &quot;DD.MMM.YYYY&quot;. In case you need very special format, you may declare <code>fFormatInput</code> and <code>fParseInput</code> plugin functions in the plugins.js to achieve whatever format you like. There is an example detailed in FAQ. </p>
+    <h4>Calendar Tag - iFrame</h4>
+    <p>The &lt;iframe&gt; of the calendar tag is the main calendar engine for all supported browsers except NN4. It has the following important properties:</p>
+    <TABLE cellSpacing=2 cellPadding=3 width="100%" border=1>
+      <TBODY>
+        <tr> 
+          <th>Property Name</th>
+          <th>Description</th>
+        </tr>
+        <TR class=a> 
+          <TD width="21%" noWrap>src</TD>
+          <TD width="79%">Loading the script engine &quot;iflateng.htm&quot;. You may specify either an absolute path or a relative one here, e.g. src=&quot;/calendar/ipopeng.htm&quot; or src=&quot;../../calendar/ipopeng.htm&quot;, any will do.<br>
+            <span class="style1">NOTE: </span><span class="style2">all relative paths set in the following name &amp; id are relative to this src location instead of the container page!!</span> Therefore you don't need to set any path in the name &amp; id if you have all calendar  files in one folder. </TD>
+        </TR>
+        <TR class=b> 
+          <TD noWrap>name &amp; id</TD>
+          <TD><code>&quot;default-month:theme-name[:agenda-file[:context-name[:plugin-file[:charset]]]]&quot; -- [] indicates optional </code>
+              <ul>
+                <li><strong>default-month</strong> should be set in an array whose first element indicates the year and second one indicates the month, e.g. <code>&quot;[2003,9]:normal&quot;</code>; you may also use the predefined <code>gToday</code> variable to bring up the current month. It determines which month 
+                to show up when there is no pre-selected date (the <code>gdSelect</code> theme option is set to [0,0,0]) and the value in the form field is empty or invalid.</li>
+                <li><strong>theme-name</strong> denotes the name of the theme used to render the calendar. It should be prepended with the absolute web path if the theme files were not located together with the engine files, e.g. &quot;gToday:/caltheme/normal&quot;. Note that you should not set any domain or protocol prefix before the path. </li>
+                <li><strong>agendar-file</strong> is the js file that defines all your agenda events and holidays. It should be prepended with the absolute path if the agenda file were not located together with the engine files, e.g. &quot;gToday:normal:/events/agenda.js&quot;. It can also be set to share another calendar's agenda store, detailed in <a href="SetupAgendas.htm">setup agenda &amp; holidays tutorial</a>.</li>
+                <li><strong>context-name</strong> declares the naming space of the calendar engine so that you can access the build-in calendar functions and variables via <code>context-name.function-or-variable</code> from your web page. It's NOT available for reference until the page is fully loaded. If omitted, the engine will create one named &quot;gfPop&quot;.</li>
+                <li><strong>plugin-file</strong> is a javascript file that contains all plugin functions. We'll talk about it in details later. If omitted, the engine will try to use the <code>plugins.js</code> file in the directory where the engine files are located.</li>
+                <li><strong>charset</strong> indicates the character set used in the themes, plugins and agenda. e.g. GB2312, ISO-8859-1, etc.<br>
+                </li>
+              </ul>
+          <em>Note: The name and id of the &lt;iframe&gt; must be set to exactly the same.</em></TD>
+        </TR>
+        <TR class=a> 
+          <TD noWrap>width &amp; height</TD>
+          <TD>They are the default initial width and height of the calendar panel. <font color="#FF0000">&nbsp; </font>You don't have to specify them most of time. However, the built-in auto-resize function might not work on some certain browser, in which case you may set the width and height manually to be exact the size you need. </TD>
+        </TR>
+        <TR class=b> 
+          <TD noWrap>style</TD>
+          <TD>It must have at least the following properties specified:<br>            "<code>visibility:visible; 
+            z-index:999; position:absolute; top:-500px; left:-500px;</code>&quot;<br>
+            You shouldn't modify them unless 
+            you know what you are doing.</TD>
+        </TR>
+        <TR class=a> 
+          <TD noWrap>scrolling &amp; frameborder</TD>
+          <TD>They should always be set to &quot;no&quot; and &quot;0&quot;.</TD>
+        </TR>
+      </TBODY>
+    </TABLE>
+    <h4>Calendar Tag - Layer</h4>
+    <p>The &lt;layer&gt; of the calendar tag is the engine dedicated to support Netscape 4.x. You may leave 
+      it out if your website doesn't need to support NN4. Only the <code>name</code>, <code>src</code> and <code>background</code> properties are required in the &lt;layer&gt; tag. They are embraced by the 
+    &lt;iframe&gt; tag so as not to be parsed by other browsers.</p>
+    <p>One important note here is that the <code>src</code> and <code>background</code> properties must be exactly the same - this is a workaround for a bug of NN4.</p>
+    <h4>Calendar Trigger - fPopCalendar() function</h4>
+    <p>To show up the calendar, you need to call the <code>fPopCalendar()</code> 
+      with a proper context-name, usually &quot;gfPop&quot;. This function has 4 important 
+      parameters that will help you to manipulate the date-picking:</p>
+    <p><code>gfPop.fPopCalendar(dateCtrl [,dateRange [,posLayerId [,posCtrl [,posOffset]]]]) -- [] indicates optional</code></p>
+    <TABLE cellSpacing=2 cellPadding=3 width="100%" border=1>
+      <TBODY>
+        <tr> 
+          <th>Parameter</th>
+          <th>Description</th>
+        </tr>
+        <TR class=a> 
+          <TD width="18%" noWrap>dateCtrl</TD>
+          <TD width="82%">The reference of the form field that stores the selected 
+            date. It doesn't have to be a form element. Any object with a &quot;name&quot; 
+            and &quot;value&quot; property can be passed in. The name of this object 
+            is <strong>requried</strong> because the engine needs it to identify 
+            the corresponding NN4 localizer.</TD>
+        </TR>
+        <TR class=b> 
+          <TD noWrap>dateRange</TD>
+          <TD><p> dateRange is an array in the following format: ( [] is the array operands here. ) </p>
+            <p><code>[RangeBeginDate,RangeEndDate,SafeMonth,DisabledDate1,DisabledDate2,...]</code> 
+            </p>
+            <ul>
+              <li><strong>RangeBeginDate, RangeEndDate</strong> denote the valid 
+                date range. Dates fall out of this range will be disabled. They 
+                should be set in an array format like <code>[year,month,day]</code>, e.g. [[2000,10,15],[2020,10,15]].</li>
+              <li><strong>SafeMonth</strong> is the month to be shown when the <code>default-month</code> 
+                of the calendar tag falls out of the valid range. If you don't specify 
+                it or if itself falls out of the valid range, the calendar will 
+                refuse to popup and give you a warning message. It should be set 
+                in an array format like <code>[year,month]</code>, e.g. [[2000,10,15],[2020,10,15],[2000,10]]</li>
+              <li><strong>DisabledDate#</strong> is the other dates within the valid 
+                range that you want to disable. You may have as many as you like. 
+                Each of them should be set an array format like <code>[year,month,day]</code>. 
+                They are optional. e.g. [[2000,10,15],[2020,10,15],[2000,10],[2003,10,10],[2003,10,11]]</li>
+            </ul>
+            <p>This is a very useful and powerful feature to constrain the date 
+              range dynamically. It's optional but should be at least set to <code>null</code> 
+              if other params behind it were used.</p></TD>
+        </TR>
+        <TR class=a> 
+          <TD noWrap>posLayerId</TD>
+          <TD><p>The name of the layer tag that contains the localizer tag. It's 
+              optional but should be at least set to <code>null</code> if other 
+              params behind it were used.</p>
+            <p>You'll need to specify it when the localizer 
+              of your date field is located within a &lt;layer&gt;, &lt;ilayer&gt; 
+              or any positioned &lt;div&gt; tags in NN4. You'll also need it if your date field 
+              is within an &lt;iframe&gt; and you want to pop the calendar outside 
+              the frame. (check the CrossFrameDemo) </p>
+            <p>Remember whenever 
+              you deal with an &lt;iframe&gt; tag, you must set the name and id 
+              of it to be exactly the same.</p></TD>
+        </TR>
+        <TR class=b>
+          <TD noWrap>posCtrl</TD>
+          <TD><p>The reference of the localizer tag. The engine will position the calendar right below it. It's optional and if you don't specify one, the engine will take the dateCtrl as the localizer.</p>
+              <p><em>Note this parameter is <strong>designed for browsers other than NN4</strong>. The localizer for NN4 will be detailed in the Working with Netscape 4 tutorial. </em></p></TD>
+        </TR>
+        <TR class=a>
+          <TD noWrap>posOffset</TD>
+          <TD><p>An array that overrides the gPosOffset theme option. The engine will position the calendar using the specified offset value. It's optional and if you don't specify one, the engine will use gPosOffset in the theme definition file.</p>
+            <p><em>This array has a format of [x-offset, y-offset, isFixedPositioning]. Positive values of x-offset and y-offset will make the calendar position lower and righter to the default popup location according to posCtrl or dateCtrl. And if isFixedPositioning is set to true, the default location will be ignored and the calendar will be shown absolutely at position (x-offset,y-offset).</em></p></TD>
+        </TR>
+      </TBODY>
+    </TABLE>
+    <p>e.g.</p>
+    <p><code>gfPop.fPopCalendar(document.myform.mydate,[[1997,1,1],[2020,12,25],[2003,9]], null,document.getElementById(&quot;localizerIE&quot;),[15,10,false]);</code></p>
+	<p>This interprets to - using <code>document.myform.mydate</code> as the date input field, using date range started from January 1, 1997 to December 25, 2020 and set the safe month to September 2003, popping up the calendar under the html tag whose id is &quot;localizerIE&quot; and offseting it 15 pixels righter and 10 pixels lower. </p>
+	<p>&nbsp;</p>
+	<h4>Summary</h4>
+    <p>We now know that the code in the upmost HelloWorld example actually says - popping up a calendar under the 
+      <code>document.demoform.dc</code> form field using the &quot;normal&quot; 
+      theme, initialize it with the current month and load it with all agendas and holidays 
+      from <code>agenda.js</code>. After a date is picked, it will 
+  be set to the <code>value</code> property of form field <code>document.demoform.dc.</code></p>
+    <p>If you want a default selected day, simply set it with appropriate format in the textfield  and the calendar will parse and show it up visually. For options like first-day-of-week, colors, fonts and sizes, please take a look at the &quot;Working with themes&quot; tutorial. There are more than 60 options that can be used to control the look and feel of the calendar, all self-documented in the theme files. </p>
+    <p><em>    <br>
+    </em></p>
+    <hr size="1">
+    <div align="right"><font size=-2><em>Copyright&copy; 2003-2007 Idemfactor Solutions, 
+      Inc. All rights reserved.</em></font></div>
+    <p>&nbsp;</p>
+</div>
+</body>
+</html>

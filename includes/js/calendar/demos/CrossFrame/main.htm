@@ -1,0 +1,38 @@
+<HTML>
+<HEAD><TITLE>Cross Frame Demo</TITLE>
+</HEAD>
+<BODY>
+
+
+<!-- Opera 7.0 has a z-index bug that prevents the calendar panel from floating above the centerIframe.
+A workaround is to move the <iframe> calendar tag from the page bottom to page top.
+-->
+<iframe width=174 height=189 name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;">
+</iframe>
+
+
+
+<H3>The cross-frame demo only works when calling from CrossFrameDemo.htm.</H3>
+
+<BR><BR>
+This demo exhibits the cross-frame capability of PopCalendarXP, as well as how to disable any days like weekends (check the fHoliday() in agenda.js as well as FAQ for how-to).
+
+<BR><BR><BR><BR>
+Following is a picker control in a floating frame:
+	
+<!--  iframe tag name and id must match -->
+<iframe src="dateCtrl2.htm" name="centerIframe" id="centerIframe" width="300" height="150" frameborder="0">
+</iframe>
+
+
+
+
+  <hr size="1">
+  <div align="right"><font size=-2><em>Copyright&copy; 2003-2007 Idemfactor Solutions, 
+    Inc. All rights reserved.</em></font></div>
+
+
+
+</BODY>
+</HTML>
+

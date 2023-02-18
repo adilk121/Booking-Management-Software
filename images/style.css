@@ -1,0 +1,106 @@
+div.smiley {
+  margin:50px;
+	width: 100px;
+	height: 100px;
+	position: relative;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 50px;
+	display: block;
+	background: #ffe632;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fffe8d), to(#f6d23e));
+	background: -moz-linear-gradient(top,  #fffe8d,  #f6d23e);	box-shadow: inset 0px -14px 14px rgba(0, 0, 0, .3), 0px 2px 20px rgba(0, 0, 0, .6);
+  -webkit-box-shadow: inset 0px -14px 14px rgba(0, 0, 0, .3), 0px 2px 20px rgba(0, 0, 0, .6);
+	-moz-box-shadow: inset 0px -14px 14px rgba(0, 0, 0, .3), 0px 2px 20px rgba(0, 0, 0, .6);
+	}
+	
+span.mata {
+	width: 15px;
+	height: 25px;
+	background: #222;
+	border-radius: 100px/160px;
+	-webkit-border-radius: 100px 160px;
+	-moz-border-radius: 100px/160px;
+	position: absolute;
+	top: 20px;
+	box-shadow: 0 2px 0 rgba(255,255,255, 0.8);
+	-webkit-box-shadow: 0 2px 0 rgba(255,255,255, 0.8);
+	-moz-box-shadow: 0 2px 0 rgba(255,255,255, 0.8);
+	}	
+	
+span.mata.matakiri {
+  left: 60px;
+}
+		
+span.mata.matakanan {
+  right: 60px;
+}
+		
+div.mulut{
+	width: 50px;
+	height: 20px;
+	border: 3px solid #222;
+	border-top: 0;
+	background: rgba(0,0,0,0);
+	-moz-border-radius: 0 0 120px 120px / 0 0 90px 90px;
+	-webkit-border-radius: 0 0 120px 120px 0 0 90px 90px;
+	border-radius: 0 0 120px 120px / 0 0 90px 90px;
+	position: absolute;
+	bottom: 15px;
+	left: 22px;
+	box-shadow: 0 2px 0 rgba(255,255,255, 0.8);
+	-webkit-box-shadow: 0 2px 0 rgba(255,255,255, 0.8);
+	-moz-box-shadow: 0 2px 0 rgba(255,255,255, 0.8);
+	}
+div.lesungpipi {
+	width: 3px;
+	height: 8px;
+	background: #222;
+	border-radius: 100px/160px;
+	-webkit-border-radius: 100px 160px;
+	-moz-border-radius: 100px/160px;
+	position: absolute;
+	top: -3px;
+	-webkit-transform: rotate(65deg);
+	-moz-transform: rotate(65deg);
+	left: -4px;
+	}
+	
+	div.lesungpipi.kanan {
+		left: 50px;
+		-webkit-transform: rotate(-65deg);
+		-moz-transform: rotate(-65deg);		
+		}
+ div.smiley:hover{
+   -webkit-transform: rotate(360deg);
+-moz-transform: rotate(360deg);
+-ms-transform: rotate(360deg);
+-o-transform: rotate(360deg);
+transform: rotate(360deg);
+-webkit-animation: a0 .2s infinite alternate .5s;
+-moz-animation: a0 .2s infinite alternate .5s;
+-ms-animation: a0 .2s infinite alternate .5s;
+-o-animation: a0 .2s infinite alternate .5s;
+animation: a0 .2s infinite alternate .5s;
+-webkit-transition: all 2s ease-in-out;
+-moz-transition: all 2s ease-in-out;
+-ms-transition: all 2s ease-in-out;
+-o-transition: all 2s ease-in-out;
+  transition: all 2s ease-in-out;}
+ div.smiley{
+-webkit-animation: bounce .3s ease infinite alternate;}
+@-webkit-keyframes bounce {
+  100% {
+    top: -30px;
+    box-shadow: 0 1px 0 #CCC,
+                 0 2px 0 #CCC,
+                 0 3px 0 #CCC,
+                 0 4px 0 #CCC,
+                 0 5px 0 #CCC,
+                 0 6px 0 #CCC,
+                 0 7px 0 #CCC,
+                 0 8px 0 #CCC,
+                 0 9px 0 #CCC,
+                 0 30px 30px rgba(0, 0, 0, .3);
+  }
+}

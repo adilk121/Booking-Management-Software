@@ -1,0 +1,12 @@
+files modified:
+
+fckconfig.js
+var _FileBrowserLanguage        = 'php' ;
+var _QuickUploadLanguage        = 'php' ;
+
+
+------------------------------------------------------------------
+
+editor/filemanager/connectors/php/config.php
+
+$Config['Enabled'] = true ;

@@ -1,0 +1,26 @@
+
+Please follow the instructions below to setup a calendar on your page:
+============================================
+1. To install, simply extract the zip package to any directory on your hard drive, say c:\calendar.
+2. The fastest way to test is to using your browser to open the c:\calendar\demos.htm, where you may find many live examples.
+3. To get to know the insight, please open the c:\calendar\tutorials.htm in any browser, and
+	1) Read "HelloWorld - the beginner's guide" tutorial carefully for how to use the calendar tags on your page.
+	2) Read "Working with themes" tutorial for how to choose and setup a theme for the calendar, as well as how to customize theme options like date range and color.
+	3) Read "Setting up agendas & holidays" if you want to have events shown on the calendar or get events from a backend DB.
+	4) Read other tutorials for localization, internationalization and making your own plugins.
+4. If you have any question, please read the FAQ.htm first. Tons of helpful tips can be found inside it.
+
+
+Necessary files involved in an installation:
+===========================
+ipopeng.htm (npopeng.htm)		-- these are so-called engine files (npopeng.htm is for Netscape 4.x only)
+"theme-name".js & "theme-name".css	-- theme files, e.g. mini.js & mini.css (for "mini" theme)
+plugins.js				-- plugins file that MUST exist. It could be empty if nothing needs to be plugged in.
+agenda.js				-- events & holiday definition file. It could be empty, but you should have it there unless it's not defined in the name & id of the calendar tag.
+
+
+Any other questions please contact our product support team.
+
+--------------------------------------
+Copyright 2003-2005, Idemfactor Solutions Inc.
+

@@ -1,0 +1,332 @@
+<html>
+<head>
+<title>PopCalendarXP Readme</title>
+<link href="tutorials/style-1.0/css/tigris.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="app">
+  <h3>PopCalendar eXtremely Perfect</h3>
+  <p>PopCalendarXP is arguably the most powerful and configurable JavaScript date
+    picker available. There are very few, if any, things that other JavaScript
+    date pickers can do that PopCalendarXP can not. Simply put with a cliche,
+    it lets you get far more done in far less time. And the way we name it XP not only because it's perfect, but also because
+    it's designed to be extremely perfect.</p>
+  <h4>Installation Guide</h4>
+  <p>To install, simply extract the zip package to any directory on your hard drive, say c:\calendar.</p>
+  <ul>
+    <li>The fastest way to test is to using your browser to open the <a href="Demos.htm">Demos.htm</a>, where you may find many live examples.</li>
+    <li>To get to know the insight, please open the <a href="Tutorials.htm">Tutorials.htm</a> in any browser, and </li>
+    <ul>
+      <li>Read &quot;HelloWorld - the beginner's guide&quot; tutorial carefully for how to use the calendar tags on your page.</li>
+      <li>Read &quot;Working with themes&quot; tutorial for how to choose and setup a theme for the calendar, as well as how to customize theme options like date range and color.</li>
+      <li>Read &quot;Setting up agendas &amp; holidays&quot; if you want to have events shown on the calendar or get events from a backend DB.</li>
+      <li>Read other tutorials for localization, internationalization and making your own plugins.</li>
+    </ul>
+  </ul>
+  <h4>Features</h4>
+  <ul>
+    <li>Written in 100% JavaScript, no installation process needed on the client
+      side.</li>
+    <li>Support all major browsers on Windows, MacOS, Linux and Solaris.</li>
+    <li> Calendar look is extremely customizable and can be switched
+        among different themes.</li>
+    <li> Lightweight and high-performance, main engine is only around
+        23KB in size.</li>
+    <li>&quot;Bulletproof&quot; calendar panel won't be penetrated by any form elements.</li>
+    <li> Various fascinating effects to highlight selected date,
+        today, agendas and holidays.</li>
+    <li>Sophisticated dynamic date range support, visually strike-out any disabled
+      date.</li>
+    <li>Retrieving agendas from either script file or backend database.</li>
+    <li>Auto-adaptive or static positioning with localizer support.</li>
+    <li>Powerful date parsing and auto-correction.</li>
+    <li>Contextual agenda messages in status-bar and/or tooltips.</li>
+    <li>Versatile and removable top/bottom sections.</li>
+    <li>Diversified context-sensitive behaviors, like popups, auto-mail or any
+      JavaScript statement.</li>
+    <li>USA/Europe/ISO-8601 conformant calendar formats and selectable week numbers.</li>
+    <li>Build-in major date formats support and can be expanded to deal with any
+      format via your own plugins.</li>
+    <li>Unicode compliant and ready for localization and/or internationalization.</li>
+    <li>Unique plug-in design maximizes the extensibility.</li>
+    <li>Expandable holiday function can accommodate most sophisticated holiday
+      algorithms.</li>
+    <li>Unlimited date pickers on the same page and the engine only need to be loaded
+      once.</li>
+    <li>Agenda can be shared across multiple calendars, even with FlatCalendarXP.</li>
+    <li>Easy to install, easy to use. (NN4 needs more care)</li>
+    <li>Fully compatible with ASP.NET, JSP, PHP, ColdFusion and other cgi technologies.</li>
+    <li>and a lot more ...</li>
+  </ul>
+  <h4>System Requirements</h4>
+  <p>PopCalendarXP Commercial Edition was tested working in the following browsers
+    with JavaScript support option enabled.</p>
+  <ul>
+    <li>Windows 9x/ME/NT/2000/XP
+        <ul>
+          <li>Internet Explorer 4.01, 5.0, 5.5, 6.0, 7.0+</li>
+          <li>Netscape 4.08, 4.75, 4.79, 4.80</li>
+          <li>Netscape 6.0, 7.0, 8.0+</li>
+          <li>Mozilla FireFox 1.0, 2.0+</li>
+          <li>Opera 7.0, 8.0, 9.0+</li>
+          <li>Safari 3.0+</li>
+        </ul>
+    </li>
+    <li>MacOS 9/10
+        <ul>
+          <li>Internet Explorer 5.0, 5.1, 5.2</li>
+          <li>Netscape 6.0, 6.2, 7.0</li>
+          <li>Mozilla FireFox 1.0+</li>
+          <li>Safari 1.0+</li>
+          <li>Opera 8.5+</li>
+        </ul>
+    </li>
+    <li>Mandrake/RedHat Linux 9
+        <ul>
+          <li>Mozilla FireFox 1.0+</li>
+          <li>Konqueror 3.0, 3.1 </li>
+        </ul>
+    </li>
+    <li>Solaris 8
+        <ul>
+          <li>Netscape 6.0</li>
+          <li>Mozilla FireFox 1.0+ </li>
+        </ul>
+    </li>
+  </ul>
+  <p>Some customers also reported that they had it successfully running in browsers
+    on other systems like IRIX and AIX.</p>
+  <p>Please also have a look at the known problems and make sure they are acceptable
+    before ordering.</p>
+  <h4>Known Problems</h4>
+  <ul>
+    <li><strong><font color="#000099">Problem:</font></strong> Netscape 4.x doesn't
+      support tooltips and only IE4+ supports multi-line tooltips.<br>
+      <strong><font color="#000099">Cause:</font></strong> Browser incapabilities.<br>
+      <strong><font color="#000099">Workaround:</font></strong> Upgrade to Netscape
+      6+ or IE 5+.<br>
+      <br>
+    </li>
+    <li><strong><font color="#000099">Problem:</font></strong> Netscape 4.x doesn't
+      support implementing different themes in the same page.<br>
+      <strong><font color="#000099">Cause:</font></strong> Browser CSS incapabilities.<br>
+      <strong><font color="#000099">Workaround:</font></strong> Upgrade to Netscape
+      6+ or avoid using different themes in the same page.<br>
+      <br>
+    </li>
+    <li><strong><font color="#000099">Problem:</font></strong> Garbage chars show up in Netscape 4.x if the web server employs &quot;gzip&quot; http compression.<br>
+      <strong><font color="#000099">Cause:</font></strong> Infamous bug of NN4.<br>
+      <strong><font color="#000099">Workaround:</font></strong> Turn off the http response compression on web server.<br>
+      <br>
+    </li>
+    <li><strong><font color="#000099">Problem:</font></strong> Implementing the
+      calendar in Netscape 4.x under certain situations could result extra complexity
+      in web authoring.<br>
+      <strong><font color="#000099">Cause:</font></strong> The buggy and non-standard-compliant
+      DHTML engine of Netscape 4.x.<br>
+      <strong><font color="#000099">Workaround:</font></strong> Follow the NN4
+      tutorials bundled with the commercial edition.</li>
+  </ul>
+  <h4>Revision History</h4>
+  <blockquote>
+    <h5><u>Release 9.8.308</u></h5>
+	<p>+ Added support to Safari 3.<br>
+    </p>
+	<h5><u>Release 9.7.307</u></h5>
+	<p>+ Added seconds support to datetime theme.<br>
+	  + Added support to IE 7 beta2.<br>
+	  + Added date range constraint to classic demo with combo-boxes.<br>
+	  + Added Double theme.<br>
+	  + Added 508 compliant support for basic themes.<br>
+	  + Adjusted gbAutoClose option so that the calendar will be closed on external clicks.<br>
+	  * Allowed TAB key to navigate the focus through the dates and ENTER key to select.<br>
+	  * Adjusted mini theme to fix border issue in IE 5.5.<br>
+	  * Optimized demos with more combined features.<br>
+	  * Update agenda tutorial with MySQL and PHP examples. <br>
+	  - Fixed a bug of fLoadScript and made it pure AJAX.	  <br>
+	- Fixed a bug that disables the calendar when running in Netscape 8.x browsers.
+    - Fixed a bug so as to allow showing only the top (for selecting month only).	<br>
+    - Fixed the xml loading bugs in agenda tutorial.<br>
+    - Fixed a bug related to auto-close.<br>
+    - Fixed a bug in fW2Date regarding the customized week offset.
+	- Removed the automatical onchange trigger as it conflicts with ASP.NET validator scripts.</p>
+	<h5><u>Release 9.6.283</u></h5>
+	<p>+ Added _cacheOther option to switch caching of theme and plugin files (gbCacheAgenda option is for agenda-cache only). <br>
+	  + Enabled CSS cursor support for Safari 1.x and Mozilla. <br>
+	  +
+	  Added  support to create time-only picker.<br>
+	  + Added a new theme - OutlookTriplexVertical. <br>
+	  *
+	  Major improvement and bug fixes to datetime theme.<br>
+	  * Renamed the Developer License to Enterprise License.
+      <br>
+      - Remove the default utf-8 charset setting, you can always set it in name &amp; id if needed.<br>
+    - Fixed a browser cache problem.	<br>
+    - Fixed a bug in OutlookTwin theme. <br>
+    -  Fixed a bug in datetime theme in Lite Edition.<br>
+    - Fixed a bug that prevents onchange event of date field from being fired properly.
+	</p>
+	<h5><u>Release 9.5.270</u></h5>
+	<p>+ Added charset support to make localization even easier. <br>
+  * Updated tutorials.<br>
+  - Fixed a bug that causes extra white space at the top in Opera 8.5.<br>
+  - Minor bug fixes. </p>
+	<h5><u>Release 9.4.266</u></h5>
+	<p>+ Enable the boxit param of agenda to set border color of date cell individually instead of relying on bgcolor.<br>
+	  + Added undocumented _preferOOR option to keep the agenda style even when they are out-of-range.<br>
+	  + Made hovering mouse cursor context(action) sensitive.<br>
+	  * Updated agenda tutorial including samples regarding  XML agenda.<br>
+    * Refactored the calendar engine to eliminate the onclick restriction from the html param of agenda.<br>
+    * Returning value of fOnDrag plugin is no longer needed, since date picking is triggered via onclick now.<br>
+    * Fine-tuned the mini theme.<br>
+    * Fine-tuned the classic demo.    <br>
+    * Fine-tuned script loading sequence inside the calendar engine.<br>
+    * Optimized fInitRange() to set default safe-month to the begin of range in case it's missing.<br>
+    * Improved datetime theme.
+    <br>
+    * Adjusted calendar position when there is not enough space to pop it up or down. <br>
+    - Fixed a minor bug in agenda effect logic. <br>
+    - Added &quot;left:-500px&quot; to iframe style to work around a bug of IE, people use RTL page flow (dir=&quot;rtl&quot;) should change it to &quot;left:2000px&quot;.<br>
+    - Fixed a bug in datetime 24hour plugin that produces error under Opera 7.54.<br>
+    - Fixed a bug in parsing month name that is abbreviated with more than 3 letters.<br>
+    </p>
+    <h5><u>Release 9.3.250</u></h5>
+    <p>+ Added support to Opera 8.<br>
+* Restructured demos directory to give a better idea of code separation. <br>
+* Updated License Agreement with new license type. <br>
+* Moved all FAQ into online forum with better support and easier to find.<br>
+    * Optimized some themes.<br>
+    * Updated tutorials.<br>
+    * Added workaround for Mcafee8 slowdown. <br>
+- Adjusted css rules to make tutorial more readable in firefox.<br>
+    - Fixed a bug that reveals the calendar inappropriately in &quot;right-to-left&quot; localed page.<br>
+    - Fixed minor bugs in demos.
+    <br>
+    - Added a workaround to avoid the relative path issue in NN4.</p>
+    <h5><u>Release 9.2.242</u></h5>
+    <p> + Added sliding out pop-effect to IE and NN4.<br>
+  + Added type-in-year support to the contrast theme, as well as a FAQ for how to apply it to other themes.<br>
+  + Added fOnload event handler to plugins.js<br>
+  - Fixed a bug in type-in-year support that crashes safari and IE on Mac. </p>
+    <h5><u>Release 9.1.240</u></h5>
+    <p> + Made domain license  more friendly to Intranet by having all non-dotted local hostnames covered.<br>
++ Added OnDoWClick plugin function to enable clicking events on week titles.<br>
++ Integrated the getDateByDOW from plugin into engine core, renamed to fGetDateByDOW.<br>
+* Updated FAQ and License Agreement.<br>
+- Fixed a bug in Mac theme and Datetime theme.</p>
+    <h5><u>Release 9.0.238</u></h5>
+    <p> + Integrated support to restrict years shown in the dropdown selector according to the dynamic date range. <br>
+      +
+      Added another marker option to identify the trigger tag in addition to naming it as &quot;popcal&quot;. <br>
+      +
+      Added an additional param to the fAddEvent() so as to allow user to attach any object with the event.<br>
+      + You now have the option to remove the line-through effect on disabled dates, see FAQ for details.<br>
+      + Added additional support to offset week number algorithm.<br>
+      + Integrated auto-hide and esc-key-hide support in engine. <br>
+      + Added a workaround FAQ for the positioning bug regarding relative-positioned elements in IE. <br>
+      * Improved engine so that you may now use '\n' directly in the action string.<br>
+      * Improved classic demo to make it easy showing how to separate a date into 3 dropdowns.<br>
+      * Updated FAQ with more tips.<br>
+      - Fixed a bug that may prevent agenda from being shared properly. Please update if you use the agenda sharing feature.<br>
+      - Minor bug fixes. </p>
+    <h5><u>Release 9.0.213</u></h5>
+    <p>
+      + Added more plugin functions.<br>
++ Added a new date-time picker theme.<br>
++ Added offset-adjustment parameters to fPopCalendar() call.<br>
++ Added support to allow loading agendas on-demond (per month), see tutorials for details. <br>
+      + Added auto-traverse support when holding down the navigation button.<br>
+      + Supported more browsers, including Safari on MacOS. <br>
+      + Added support to make any day as first day of week. (gbEuroCal option is deprecated) <br>
++ Added a new demo with a versatile picker that can pick either a single date or a whole week.<br>
+      * Revised all themes and plugins.<br>
+      * Enhanced dragging support and multi-select plugin. <br>
+* Optimized engine core. <br>
+      * Updated tutorials and FAQ.<br>
+    - Fixed a bug that may prevent the form fields from getting focused.<br>
+    - Minor bug fixes.</p>
+    <h5><u>Release 8.1.188</u></h5>
+    <p>+ Added a new theme.<br>
+      + Now you can hide all the contents in a date cell by setting its agenda fgcolor to &quot;&quot; (empty string). This gives you another way to disable a date.<br>
+      * Adjusted month navigator options of certain themes to follow a bug fix.<br>
+      * Enhanced date range demo and contrast theme. <br>
+      * Updated tutorials and FAQ. <br>
+  - General bug fixes.</p>
+    <h5><u>Release 8.0.182</u></h5>
+    <p>+ Enhanced support for handling server-side charset encoding and i18n.<br>
+      + Added built-in support for non-seperator date format, e.g. &quot;yyyymmdd&quot;.<br>
+      + Added new demos and themes.<br>
+      + Added in FAQ on how to append multiple sub-events to a day.<br>
+      * Updated documentation with new tips and tricks.<br>
+      * When upgrading from previous version, theme/plugin files also need upgrading.<br>
+      - Fixed a tiny bug in the xp theme.<br>
+      - Default multiselect key changed to Ctrl from Alt Key.<br>
+      - gEvent has been deprecated, event object is now directly passed into plugin
+      functions.<br>
+      - Fixed a minor bug that may stop showing hint messages on status-bar.<br>
+- Fixed a bug that
+    can't hide days in other months when set background color to transparent. </p>
+    <h5><u>Release 7.1.174</u></h5>
+    <p>* License schema changed.<br>
+      - Fixed license related issues on IIS 6.0 and tomcat 4.0.</p>
+    <h5><u>Release 7.0.172</u></h5>
+    <p>+ New multi-select plugin supports dragging and ctrl/alt/shift-key-assisted
+      dates picking.<br>
+      + Support run-time agenda sharing with FlatCalendarXP.<br>
+      + More theme options that can help creating gorgeous effects.<br>
+      + Added more high-quality themes!<br>
+      + Added more powerful demos!<br>
+      * Enhanced code engine is <strong>2-8 times faster</strong> on various browsers.<br>
+      * Enhanced auto-resizing under all supported browsers.<br>
+      * Enhanced internal dropdown plugins.<br>
+      * Updated product tutorials and FAQ.<br>
+      - Fixed the border overflow bug in Opera 7 and the frame border bug in IE6
+      with DOCTYPE.<br>
+      - Fixed a bug that caused the calendar title always left-aligned in IE on
+      Mac.<br>
+      - Other minor bugs fixed.</p>
+    <h5><u>Release 6.1.120a</u></h5>
+    <p>* Optimized some demos.<br>
+      * Updated product tutorials and FAQ.<br>
+      * Minor optimization to the engine.</p>
+    <h5><u>Release 6.1.119a</u></h5>
+    <p>+ Added a new option in themes to invert the boldface effect.<br>
+      + Setting <code>gsOutOfRange</code> to empty string (i.e. &quot;&quot;)
+      can now prevent the out-of-range alert from showing up.<br>
+      * Added more FAQs to documentation.<br>
+      * Updated the agenda tutorial to improve the JSP/Database sample.<br>
+      - Removed some redundant code from engine.</p>
+    <h5><u>Release 6.1.116</u></h5>
+    + Added support to Opera 7.0!<br>
+    - Fixed a bug that crashes IE 5.0 on MacOS 9.2.
+    <h5><u>Release 6.0.115</u></h5>
+    + Tons of new features added in the theme.<br>
+    + More highlighting effects on agenda date.<br>
+    + New exquisite high-quality cross-browser themes.<br>
+    + New plugin support, extremely extensible.<br>
+    + New well-organized well-documented tutorials and demos.<br>
+    * Code engine has been rewritten and is <strong>4 times faster</strong> than
+    before!!!<br>
+    * Week number is now ISO-8601 conformant.<br>
+  - Minor bugs fixed.</blockquote>
+  <p>&nbsp;</p>
+
+  <hr size="1">
+  <div align="right"><font size=-2><em>Copyright&copy; 2003-2007 Idemfactor Solutions,
+    Inc. All rights reserved.</em></font></div>
+  <p>&nbsp;</p>
+
+
+  <p>&nbsp;</p>
+  <p><font size="-2"> <sup><a name="explain" id="explain">*</a></sup> The calendar
+    panel is bulletproof against form elements in all supported browsers except Netscape 4.x, in which
+    case tricks are needed to avoid penetrating. We've packaged detailed demos
+    telling you how to do it right.</font></p>
+  <p><sup><font size="-2">+</font></sup><font size="-2">This product includes
+    software developed by the Apache Software Foundation (http://www.apache.org/)
+    - the Tigris CSS Style Sheet (http://style.tigris.org/), which is used to render tutorial
+    documents only.</font></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<HTML>
+<HEAD><TITLE>Week Picker Demo</TITLE>
+</HEAD>
+<BODY>
+
+
+<FORM name="demoform">
+&nbsp;Date Field: <input name="dc" value="" size="20"><a href="javascript:void(0)" onclick="if(self.gfPop)gfPop.fPopCalendar(document.demoform.dc);return false;" ><img name="popcal" align="absmiddle" src="WeekPicker/calbtn.gif" width="34" height="22" border="0" alt=""></a>
+</FORM>
+
+<UL>
+<LI>This picker can pick either a single date or a whole week. To pick a week simply click the week number.
+<LI>The color and other highlight effects of the selected date(s) is controled by the giMarkSelected option in the theme (normal.js).
+<LI>You may also change the fOnWeekClick() handler in plugins.js to process _selDatesRange array that contains the 1st and last date of the selected week.
+<LI>To create such a versatile picker, we just added several lines in the plugins.js. Please check it for details and you'll see the power of the engine.
+<LI>If you don't want to show week numbers, simply set the giWeekCol option to -1.
+</UL>
+
+
+  <hr size="1">
+  <div align="right"><font size=-2><em>Copyright&copy; 2003-2007 Idemfactor Solutions, 
+    Inc. All rights reserved.</em></font></div>
+
+
+
+<!--  PopCalendar(tag name and id must match) Tags should not be enclosed in tags other than the html body tag. -->
+<iframe width=199 height=178 name="gToday:normal:agenda.js" id="gToday:normal:agenda.js" src="WeekPicker/ipopeng.htm" scrolling="no" frameborder="0" style="visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;">
+</iframe>
+</BODY>
+</HTML>
+

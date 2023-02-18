@@ -1,0 +1,111 @@
+<html>
+<head>
+<title>i18n tutorial</title>
+<link href="style-1.0/css/tigris.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div class="app"> 
+  <h3>Localization and internationalization</h3>
+  <p>Although all themes coming with CalendarXP are in English, it's very easy 
+    to localize them into your own language. Moreover it's quite simple to setup 
+    an i18n framework with your cgi server to provide multi-language support of 
+    your website. This tutorial will help you deal with them fast.</p>
+  <div class="app">
+    <h4>How to localize a theme?</h4>
+    <p>Pick up any theme at hand and take a look at the source, you'll find all 
+      text strings in the calendar are externalized here. So what's next? Just 
+      translate the English strings to your own language strings and modify the 
+      theme css to use corresponding font family. </p>
+    <p>Certain languages may need a charset different than the default one, in which case you just need to set the <strong>6th parameter of the name &amp; id of iframe calendar tag</strong> with the correct charset - please refer to helloworld the beginner's tutorial for details. e.g.</p>
+    <div class="app">
+      <div class="dottedBox">
+        <p><code>&lt;iframe name=&quot;gToday:normal:agenda.js:::<strong>utf-8</strong>&quot; id=&quot;gToday:normal:agenda.js:::<strong>utf-8</strong>&quot; src=...&gt;</code></p>
+      </div>
+    </div>
+    <p>&nbsp;</p>
+  </div>
+  <div class="app">
+    <h4>How to get i18n work on the page?</h4>
+    <p>I18n, a.k.a internationalization, is to make your page available in different 
+      languages at the same time. You'll be preparing resources in different language 
+      and feeding the browser with the one chosen by the end user.</p>
+    <p>First, you need to localize the theme you choose into different languages 
+      and name them with specific suffixes. e.g. For mini theme localized in French, 
+      we can have mini_fr.css and mini_fr.js. If you were to use any strings in 
+      plugins or agendas, you may either create plugins_fr.js and agenda_fr.js 
+      accordingly, or externalize the text strings into an array and append it 
+      to mini_fr.js.</p>
+    <p>Next, you need to create server-side wrappers for the engine files so that 
+      a correct charset encoding header will be sent to the browser. The wrapper 
+      is nothing but a file with a http charset setting and an &quot;include&quot; 
+      tag in the syntax of the cgi tech your server employed. Taking ASP as example, 
+      we need to create the <em>ipopeng.asp</em> as following: (You may need to do same thing for npopeng.asp if you need to support Netscape 4.x)</p>
+  </div>
+<blockquote> 
+  <div class="app"> 
+      <div class="dottedBox"> 
+        <p><code>&lt;%<br>
+          </code><code> Response.Charset=Request.QueryString(&quot;sel_charset&quot;)<br>
+          %&gt;<br>
+          &lt;!-- #include file=&quot;ipopeng.htm&quot; --&gt;</code></p>
+      </div>
+  </div>
+</blockquote>
+  <div class="app"> 
+    <div class="app">
+      <p>Copy the file into the same directory where the ipopeng.htm engine file is located, then modify the calendar tag to use the wrapper file as the 
+      code source accordingly. e.g.</p>
+    </div>
+    <blockquote>
+      <div class="app">
+        <div class="dottedBox"> 
+          <p><code>&lt;iframe name=&quot;gToday:mini:agenda.js&quot; id=&quot;gToday:mini:agenda.js&quot;<br>
+            src=&quot;ipopeng.asp&quot; ...&gt;<br>
+            &lt;/iframe&gt;</code></p>
+        </div>
+      </div>
+    </blockquote>
+    <p></p>
+    <p>Finally, dynamically generate the theme name and <code>sel_charset</code> 
+      according to the language/charset used in your page.</p>
+    <blockquote>
+        
+      <div class="dottedBox"> 
+        <p><code>&lt;iframe name=&quot;gToday:mini_&lt;%=selected_language%&gt;:agenda.js&quot; 
+          id=&quot;gToday:mini_&lt;%=selected_language%&gt;:agenda.js&quot;<br>
+          src=&quot;ipopeng.asp?sel_charset=&lt;%=selected_charset%&gt;&quot; 
+          ...&gt;<br>
+          &lt;/iframe&gt;</code></p>
+      </div>
+    </blockquote>
+    <p>The <code>selected_language</code> can be &quot;fr&quot;, &quot;cn&quot; 
+      or any language code used by your localized theme. The <code>selected_charset</code> 
+      can be &quot;iso-8859-1&quot;, &quot;gb2312&quot; or any charset employed 
+      by your theme correspondingly.</p>
+    <p>&nbsp;</p>
+    <p>Note: the server-side wrappers approach can also be replaced by setting the 6th parameter of the name &amp; id to the correct charset. e.g.</p>
+    <blockquote>
+      <div class="app">
+        <div class="dottedBox">
+          <p><code>&lt;iframe name=&quot;gToday:normal:agenda.js:::&lt;%=selected_charset%&gt;&quot; id=&quot;gToday:normal:agenda.js:::&lt;%=selected_charset%&gt;&quot; src=...&gt;</code></p>
+        </div>
+      </div>
+    </blockquote>
+    <div class="app">
+      <div class="app">
+        <p></p>
+      </div>
+    </div>
+    <p></p>
+    <hr size="1">
+    <div align="right"><font size=-2><em>Copyright&copy; 2003-2007 Idemfactor Solutions, 
+      Inc. All rights reserved.</em></font></div>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+  </div>
+</div>
+
+</body>
+</html>

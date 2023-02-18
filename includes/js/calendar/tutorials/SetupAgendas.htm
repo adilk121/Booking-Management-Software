@@ -1,0 +1,555 @@
+<html>
+<head>
+<title>Agenda and Holiday</title>
+<link href="style-1.0/css/tigris.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+.style1 {color: #FF0000}
+.style3 {color: #FF0000; font-weight: bold; }
+-->
+</style>
+</head>
+
+<body>
+<div class="app">
+  <h3>Setting up agenda events &amp; holidays</h3>
+  <p>We've already known that the 3rd parameter in the name &amp; id of the calendar
+    tag denotes a file named <code>agenda.js</code>. This parameter is <strong>optional</strong>.
+    The calendar can work without it, only that there will be no holidays or events
+    showing. Once this parameter is defined, you'll have to have a <code>agenda.js</code> file in place, which  provides all agenda events
+    as well as the holidays for the calendar engine. If this file is missing and the parameter is defined, you will get errors and the calendar may not work properly. </p>
+  <p>Before we go further with the agenda, let's take another look at the calendar
+    tag, as following.</p>
+<blockquote>
+    <div class="dottedBox"><code>&lt;iframe name=&quot;gToday:normal:agenda.js&quot;
+      id=&quot;gToday:normal:agenda.js&quot;
+      src=&quot;ipopeng.htm&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot;<br>
+      style=&quot;visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px;&quot;&gt;<br>
+      &lt;LAYER name=&quot;gToday:normal:agenda.js&quot; src=&quot;npopeng.htm&quot; <code>background=&quot;npopeng.htm&quot;</code>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/LAYER&gt;<br>
+      &lt;/iframe&gt;</code> </div>
+</blockquote>
+  <p>One thing need to be pointed out earlier is that the file doesn't have to
+    be named as <code>agenda.js</code>. You may actually use any cgi program to
+    generate this file on-the-fly, e.g. ASP, JSP or PHP, so that you can take
+    advantage of it and retrieve whatever events from your backend server or database.
+  We'll discuss about it later in this tutorial.</p>
+  <p>Now let's go through the <code>agenda.js</code> file in the HelloWorld demo directory and explain parts of it in detail.</p>
+  <h4>What is an agenda event?</h4>
+  <p>An agenda event is just a special day that you want to render it differently in
+    the calendar, like appointments, meetings and/or other daily events. You may
+    give them specific font colors, background colors, text tooltips, or even
+    images and customized html code. All you need to do is to append a line in
+  the <code>agenda.js</code> for each daily event you got. e.g.</p>
+  <blockquote>
+  <div class="dottedBox"><code>fAddEvent(year, month, day, message, action, bgcolor, fgcolor, bgimg,
+  boxit, html, etc);</code>
+  </div>
+  </blockquote>
+  <p>The parameters are detailed as following:</p>
+  <ul>
+    <li> <strong>year,month,day</strong> indicates the date of the agenda.</li>
+    <li><strong>message</strong> is the text that will be shown as a tooltip,
+      as well as in the statusbar.</li>
+    <li><strong>action</strong> is the script to be executed when the agenda date
+      gets selected. Specifically, if you set the action to <code>null</code> or &quot;null&quot;,
+      the agenda date will be visually disabled(line-crossed). Of course you may
+      in addition use other properties to create a customized disabled-looking.
+      If you set it to &quot;&quot;, i.e. empty string, there will be no action
+      performed when the date is selected.</li>
+    <li><strong>bgcolor</strong> is the background color of the agenda date.</li>
+    <li><strong>fgcolor</strong> is the font color of the agenda date. Setting it to &quot;&quot;(empty string) will make the fonts invisible and the date unselectable.  This actually gives you another way to disable a day. </li>
+    <li><strong>bgimg</strong> is the URL pointing to the image tiled in the cell
+      background of the agenda date.</li>
+    <li><strong>boxit</strong> if boxit is set other than <code>false</code> or <code>null</code> value, the date will be drawn in a box using boxit value as the color, or bgcolor if boxit is <code>true</code>.</li>
+    <li><strong>html</strong> is the HTML code to be injected into the cell of
+      the agenda date. It's very useful if you want to pack more stuff in a cell, e.g. more events in the same day. </li>
+    <li><strong>etc</strong> is an additional param that can be used to store any value, object or even array with the specific date. Note that you have to be cautious to use object or array here because of the object reference side-effect. </li>
+  </ul>
+  <p><span class="style3">Note:</span> if you want to use an anchor &lt;a&gt; link inside the <code>html</code> param, you should set the <code>target</code> property to either _top or _blank. Because the calendar is contained in an iframe, and if you omit the <code>target</code>, the link will be just targeted into the calendar panel.</p>
+  <blockquote>
+    <div class="dottedBox"><code><code>fAddEvent(2004,1,18,&quot; Hello World! &quot;, &quot;&quot;, &quot;#87ceeb&quot;, &quot;dodgerblue&quot;, null, &quot;gold&quot;, <br>
+      &quot;&lt;a href='<code><code>http://www.calendarxp.net</code></code>' target='_top'&gt;...&lt;/a&gt;&quot;);</code></code></div>
+  </blockquote>
+  <p></p>
+  <p>Following please find some sample usages, and note the <code>popup()</code> is a pre-defined JavaScript utility function located in the <code>plugins.js</code>. </p>
+  <blockquote>
+    <div class="dottedBox"><code>fAddEvent(2004,1,18,&quot; Hello World! &quot;, &quot;<code>popup('/anypath/mypage.html', '_top')</code>&quot;, &quot;#87ceeb&quot;, &quot;dodgerblue&quot;, null, &quot;gold&quot;);<br>
+      <br>
+    <code>fAddEvent(2004,1,19,&quot; Hello World! &quot;, &quot;&quot;, &quot;#87ceeb&quot;, &quot;dodgerblue&quot;, null, false, &quot;&lt;div align=left class='MsgBoard' onmousedown='popup(\&quot;mailto:who@anyemail.address?subject=test\&quot;, \&quot;_blank\&quot;)'&gt;My Meeting&lt;/div&gt;&quot;);<br>
+    </code><br>
+    <code><code><code>var anyURL=&quot;mailto:who@anyemail.address?subject=it's a sample for using quote&quot;;<br>
+    fAddEvent(2004,1,20,&quot; Hello World! &quot;, &quot;&quot;, &quot;#87ceeb&quot;, &quot;dodgerblue&quot;, null, false, &quot;&lt;div align=left class='MsgBoard' onmousedown='popup(anyURL, \&quot;_blank\&quot;)'&gt;My Meeting&lt;/div&gt;<code><code><code><code>&lt;div align=left class='MsgBoard' onmousedown='alert(\&quot;Take a break\&quot;)'&gt;Lunch Time&lt;/div&gt;</code></code></code></code>&quot;);</code></code></code></code></div>
+  </blockquote>
+  <p><strong><font color="#FF0000">Note:</font></strong> There is an important
+      option called <code>gAgendaMask</code> in the <code>theme-name.js</code>
+    file. It determines which parameter will be masked out - which one in use
+    which one not. So be sure to check it before adapting your agendas and holidays,
+    or just set all bit values to -1 to disable the mask.</p>
+  <p>Later, you read it out by calling the following and it will return any array in format <code>[message, action, bgcolor, fgcolor, bgimg, boxit, html, etc]</code> or <code>null</code> if nothing found :</p>
+  <blockquote>
+    <div class="dottedBox"><code> <font color="brown">fGetEvent(year, month, date);</font></code></div>
+  </blockquote>
+  <p>Or if you want to get rid of an event, you may simply call:</p>
+  <blockquote>
+    <div class="dottedBox"><code> <font color="brown">fRemoveEvent(year, month, date);</font></code></div>
+  </blockquote>
+    <h4>How can I have 2 or more events within the same day?</h4>
+    <p>The agenda event is set per day by <code>fAddEvent()</code> call, which means if you call it for the same day twice only the latter call will be used to set the effects. If you want to show more than one events in the same day, you need to code your own functions to merge them into one.</p>
+    <p>For example, you may simply add the following function to plugins.js and replace all <code>fAddEvent</code> calls with <code>fAppendEvent</code> in agenda.js.</p>
+<blockquote>
+    <div class="dottedBox"><code> function fAppendEvent(y,m,d,message,action,bgcolor,fgcolor,bgimg,boxit,html,etc) {<br>
+&nbsp;&nbsp;var ag=fGetEvent(y,m,d);<br>
+&nbsp;&nbsp;if (ag==null) fAddEvent(y,m,d,message,action,bgcolor,fgcolor,bgimg,boxit,html,etc);<br>
+&nbsp;&nbsp;else fAddEvent(y,m,d,message?ag[0]+&quot;\n&quot;+message:ag[0], <code>action</code>?<code>action</code>:ag[1],<code><br>
+  bgcolor</code>?<code>bgcolor</code>:ag[2],<code> fgcolor</code>?<code>fgcolor</code>:ag[3], <code>bgimg</code>?<code>bgimg</code>:ag[4], <code>boxit</code>?<code>boxit</code>:ag[5], ag[6]+html, etc?etc:ag[7]);<br>
+  }</code></div>
+</blockquote>
+    <p>In the above sample, the message and html params will be appended, while the action, bgcolor, fgcolor, boxit and bgimg params will be substituted by the subsequently added sub-events. But this is just our choice and you may modify it to implement your own solution.</p>
+    <h4>What is a holiday?</h4>
+  <p>A holiday, a.k.a. recurring/batch event, is nothing but a special agenda
+      that will recur from time to time. Therefore, we made a function to define
+    them more efficiently, as following: (Note it's optional.) </p>
+  <blockquote>
+    <div class="dottedBox">
+      <p><code> function fHoliday(y,m,d) {<br>
+        &nbsp;&nbsp;var rE=fGetEvent(y,m,d), r=null;<br>
+        <br>
+        </code><code>&nbsp;&nbsp;if (m==1&amp;&amp;d==1)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;r=[&quot; Jan 1, &quot;+y+&quot; \n Happy New
+          Year! &quot;, &quot;&quot;, &quot;steelblue&quot;];<br>
+        &nbsp; }<br>
+        <br>
+        &nbsp;&nbsp;return rE?rE:r; // if returns null, the engine will just render it
+          as a normal day.<br>
+      }</code></p>
+    </div>
+  </blockquote>
+  <p><strong>Once defined, the calendar engine will call it each time when rendering
+      a date cell. So if you have a lot of similar events or want to show the
+      same agenda across a period of time, i.e. weeks or months, using the <code>fHoliday()</code>
+    to return an agenda template is much viable than making tons of <code>fAddEvent()</code>
+    calls. </strong>The plugin in range picker demo is a good example in reality.</p>
+  <p>This function should return an array as agenda template in the following
+    format or a <code>null</code> value if nothing special.</p>
+  <p><code>[message, action, bgcolor, fgcolor, bgimg, boxit, html, etc]</code></p>
+  <p>In the above sample, we take the following logic -- first look up for the
+      event of date [y,m,d]. If we found one, simply return it to the engine because
+    we think the event created by the fAddEvent is more important.</p>
+  <p>Of course, we can easily make the code continue to check holidays and merge
+      the result of both together if we like. Or we may favor holidays over events
+      by checking the holiday first. Anyway, it's all up to you since this function
+  is totally under your control.</p>
+  <p>Here is a sample function that enables most of USA holidays, except Easter which we'll discuss later. Note that here we use a pre-defined function <code>fGetDateByDOW()</code>. This function returns the date number of the 1st, 2nd ... or last - Monday, Tuesday ... or Sunday of any month. Using it will make certain holiday calculation much easier. </p>
+  <blockquote>
+    <div class="dottedBox"><code>
+      <p>function fHoliday(y,m,d) {<br>
+        var rE=fGetEvent(y,m,d), r=null;<br>
+</p>
+      <p> // you may have sophisticated holiday calculation set here, following are only simple examples.<br>
+  if (m==1&amp;&amp;d==1)<br>
+  r=[&quot; Jan 1, &quot;+y+&quot; \n Happy New Year! &quot;,gsAction;,&quot;skyblue&quot;,&quot;red&quot;];<br>
+  else if (m==12&amp;&amp;d==25)<br>
+  r=[&quot; Dec 25, &quot;+y+&quot; \n Merry X'mas! &quot;,gsAction,&quot;skyblue&quot;,&quot;red&quot;];<br>
+  else if (m==7&amp;&amp;d==1)<br>
+  r=[&quot; Jul 1, &quot;+y+&quot; \n Canada Day &quot;,gsAction,&quot;skyblue&quot;,&quot;red&quot;];<br>
+  else if (m==7&amp;&amp;d==4)<br>
+  r=[&quot; Jul 4, &quot;+y+&quot; \n Independence Day &quot;,gsAction,&quot;skyblue&quot;,&quot;red&quot;];<br>
+  else if (m==11&amp;&amp;d==11)<br>
+  r=[&quot; Nov 11, &quot;+y+&quot; \n Veteran's Day &quot;,gsAction,&quot;skyblue&quot;,&quot;red&quot;];<br>
+  else if (m==1&amp;&amp;d&lt;25) {<br>
+  var date=fGetDateByDOW(y,1,3,1); // Martin Luther King, Jr. Day is the 3rd Monday of Jan<br>
+  if (d==date) r=[&quot; Jan &quot;+d+&quot;, &quot;+y+&quot; \n Martin Luther King, Jr. Day &quot;,gsAction,&quot;skyblue&quot;,&quot;red&quot;];<br>
+  }<br>
+  else if (m==2&amp;&amp;d&lt;20) {<br>
+  var date=fGetDateByDOW(y,2,3,1); // President's Day is the 3rd Monday of Feb<br>
+  if (d==date) r=[&quot; Feb &quot;+d+&quot;, &quot;+y+&quot; \n President's Day &quot;,gsAction,&quot;skyblue&quot;,&quot;red&quot;];<br>
+  }<br>
+  else if (m==9&amp;&amp;d&lt;15) {<br>
+  var date=fGetDateByDOW(y,9,1,1); // Labor Day is the 1st Monday of Sep<br>
+  if (d==date) r=[&quot; Sep &quot;+d+&quot;, &quot;+y+&quot; \n Labor Day &quot;,gsAction,&quot;skyblue&quot;,&quot;red&quot;];<br>
+  }<br>
+  else if (m==10&amp;&amp;d&lt;15) {<br>
+  var date=fGetDateByDOW(y,10,2,1); // Thanksgiving is the 2nd Monday of October<br>
+  if (d==date) r=[&quot; Oct &quot;+d+&quot;, &quot;+y+&quot; \n Thanksgiving Day (Canada) &quot;,gsAction,&quot;skyblue&quot;,&quot;red&quot;];<br>
+  }<br>
+  else if (m==11&amp;&amp;d&gt;15) {<br>
+  var date=fGetDateByDOW(y,11,4,4); // Thanksgiving is the 4th Thursday of November<br>
+  if (d==date) r=[&quot; Nov &quot;+d+&quot;, &quot;+y+&quot; \n Thanksgiving Day (U.S.) &quot;,gsAction,&quot;skyblue&quot;,&quot;red&quot;];<br>
+  }<br>
+  else if (m==5&amp;&amp;d&gt;20) {<br>
+  var date=fGetDateByDOW(y,5,5,1); // Memorial day is the last Monday of May<br>
+  if (d==date) r=[&quot; May &quot;+d+&quot;, &quot;+y+&quot; \n Memorial Day &quot;,gsAction,&quot;skyblue&quot;,&quot;red&quot;];<br>
+  }</p>
+      <p>&nbsp; </p>
+      return rE?rE:r; // favor events over holidays <br>
+   <p>}</p>
+    </code></div>
+  </blockquote>
+  <h4>How to resolve conflicts between events and holidays? </h4>
+  <p>By default, the <code>fHoliday()</code> in <code>agenda.js</code> will favor events over holidays, which means if you use <code>fAddEvent()</code> against a holiday day, all the holiday effects will be totally replaced by the event ones. But what if you only want to replace partial effects and keep other effects unchanged? Let's show you how to do it with an example.</p>
+  <p>Suppose we want to keep the font color of the date number as well as the background image from the holiday and all other effects from the conflicted event. To make it work, we need to modify the <code>fHoliday()</code> a little, as following:</p>
+  <blockquote>
+    <div class="dottedBox" style="width:95%">
+      <p><code>function fHoliday(y,m,d) {<br>
+      var rE=fGetEvent(y,m,d), r=null;<br>
+      <br>
+      if (m==1&amp;&amp;d==1)<br>
+&nbsp;&nbsp;r=[&quot; Jan 1, &quot;+y+&quot; \n Happy New Year! &quot;,gsAction,&quot;skyblue&quot;,&quot;red&quot;];<br>
+      ... <br>
+      <br>
+      if (r&amp;&amp;rE) { rE[3]=r[3]; rE[4]=r[4]; return rE;} <br>
+      else return rE?rE:r;<br>
+      } <br>
+      </code></p>
+    </div>
+  </blockquote>
+  <p>The above modification interprets as &quot;get the agenda for event of day (y,m,d) and store it in <code>rE</code>; also get agenda into <code>r</code> if (y,m,d) is a holiday; if event conflicts with holiday, then replace the 3rd and 4th element (fgcolor and bgimg) of the event agenda with the values from holiday; or return the existing agenda if nothing conflicts.&quot;</p>
+  <h4>Additional date calculations</h4>
+  <p>In addition to do the simple comparison of year and month, you could use
+    much more sophisticated formulas to check out the non-regular holidays like
+    Easter, Thanksgiving or whatever holiday in your culture. There are so many
+  standard calculations on the internet that can be used directly here.</p>
+  <p>You may just create some helper functions in plugins.js and then call them from
+  within the fHoliday function to verify against the date passed in. For example, we have a function that calculates the Easter Day and want to use it in the <code>fHoliday()</code> call. We first add the following code to the <code>plugins.js</code>:</p>
+<blockquote>
+  <div class="dottedBox">
+    <p><code>function getEaster(year) {<br>
+    var a=year%19, b=Math.floor(year/100), c=year%100, d=Math.floor(b/4), e=b%4, f=Math.floor((b+8)/25), g=Math.floor((b-f+1)/3), h=(19*a+b-d-g+15)%30, i=Math.floor(c/4), k=c%4, l=(32+2*e+2*i-h-k)%7, m=Math.floor((a+11*h+22*l)/451), n=h+l-7*m+114;<br>
+    return [Math.floor(n/31),n%31+1];<br>
+    }</code></p>
+  </div>
+</blockquote>
+  <p>then append the following code to the <code>fHoliday()</code> in <code>agenda.js</code>:</p>
+  <blockquote>
+  <div class="dottedBox">
+    <p><code>function fHoliday(y,m,d) {<br>
+    ...<br>
+    var easter=getEaster(y);<br>
+    if (m==easter[0]&amp;&amp;d==easter[1]) r=[gMonths[m-1].substring(0,3)+&quot; &quot;+d+&quot;, &quot;+y+&quot; Easter Day &quot;, gsAction,&quot;skyblue&quot;,&quot;red&quot;];<br>
+    <br>
+    return rE?rE:r; // favor events over holidays</code></p>
+    <p><code>} </code></p>
+  </div>
+</blockquote>
+  <h4>Retrieving agenda events from backend data source</h4>
+  <p>Ever thought about making your agenda events manageable by using a backend
+    server/database? No kidding, it's not only possible but always simple with
+  CalendarXP.</p>
+  <p>Here we'll show you an example of how to generate a JavaScript file via JSP, which is capable of retrieve data from backend database. It's almost the same if you work with
+  ASP, PHP or other cgi techniques, you may easily figure it out provided you know how to code in that language.</p>
+    <ol>
+      <li> Suppose that you have got a table named &quot;MY_AGENDAS&quot;
+      in your database, and you have already defined a datasource named &quot;jdbc/myDataSource&quot; (you should have set up db user/password in the datasource).</li>
+      <li>Suppose there are 10 columns in table &quot;MY_AGENDAS&quot; in accordance
+    with the agenda format, as following: <code>ag_year,ag_month,ag_day,ag_message,ag_action,ag_bgcolor,ag_fgcolor,ag_bgimg,ag_boxit,ag_html</code>.</li>
+  <li>Build a JSP file named <code>agenda.jsp</code> as following:
+    <div class="dottedBox">
+      <p><code> &lt;%@ page contentType=&quot;text/javascript&quot; %&gt;<br>
+        &lt;% // The above JSP code set the generated page to be recognized as
+        a javascript source. %&gt;<br>
+        <br>
+        &lt;% java.sql.Connection conn=null;<br>
+        try {<br>
+        // Establish database connection<br>
+        javax.naming.Context ctx = new javax.naming.InitialContext();<br>
+        javax.sql.DataSource ds = (javax.sql.DataSource)ctx.lookup(&quot;jdbc/myDataSource&quot;);<br>
+        conn = ds.getConnection();<br>
+        <br>
+        // Execute SQL and get a result set<br>
+        java.sql.Statement stmt = conn.createStatement();<br>
+        java.sql.ResultSet rs = stmt.executeQuery(&quot;SELECT * FROM MY_AGENDAS&quot;);<br>
+        <br>
+        // Loop through the result set to generate multiple fAddEvent() functions<br>
+        while (rs.next()) {<br>
+        %&gt;<br>
+        <br>
+        fAddEvent(&lt;%=rs.getString(&quot;ag_year&quot;)%&gt;,&lt;%=rs.getString(&quot;ag_month&quot;)%&gt;,&lt;%=rs.getString(&quot;ag_day&quot;)%&gt;,<br>
+        '&lt;%=rs.getString(&quot;ag_message&quot;)%&gt;','&lt;%=rs.getString(&quot;ag_action&quot;)%&gt;','&lt;%=rs.getString(&quot;ag_bgcolor&quot;)%&gt;',<br>
+        '&lt;%=rs.getString(&quot;ag_fgcolor&quot;)%&gt;','&lt;%=rs.getString(&quot;ag_bgimg&quot;)%&gt;',&lt;%=rs.getString(&quot;ag_boxit&quot;)%&gt;,<br>
+        '&lt;%=rs.getString(&quot;ag_html&quot;)%&gt;');<br>
+        <br>
+        &lt;% }<br>
+        <br>
+        // Close db connection and error handling<br>
+        rs.close();<br>
+        stmt.close();<br>
+        } catch (Exception e) {<br>
+        System.out.pringln(&quot;Service Error: &quot;+e);<br>
+        } finally {<br>
+        if (conn!=null)<br>
+        try { conn.close() } catch (Exception ignore) {};<br>
+        }<br>
+        %&gt;<br>
+        <br>
+        function fHoliday(y,m,d) {<br>
+        ... the javascript code for fHoliday ... <br>
+        }<br>
+        </code></p>
+    </div>
+  </li>
+  <li>Place <code>agenda.jsp</code> in your JSP server, suppose the absolute URL
+    path is <code>/myweb/agenda.jsp</code>. Change the 3rd parameter in the name&amp;id
+    of the calendar tag, as following:
+      <div class="dottedBox"><code>&lt;iframe width=174 height=189 name=&quot;gToday:normal:/myweb/agenda.jsp&quot;
+        id=&quot;gToday:normal:/myweb/agenda.jsp&quot; src=&quot;ipopeng.htm&quot; 
+        scrolling=&quot;no&quot; frameborder=&quot;0&quot;&gt;<br>
+        &lt;layer name=&quot;gToday:normal:/myweb/agenda.jsp&quot; src=&quot;npopeng.htm&quot; <code>background=&quot;npopeng.htm&quot;</code>&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/layer&gt;<br>
+      &lt;/iframe&gt;</code></div>
+  </li>
+</ol>
+<p>That's all. Now all the agenda events should be loaded directly from your backend
+  database table MY_AGENDAS. <strong>If you come across any problem, be sure to point your browser to /myweb/agenda.jsp first and retrieve the generated page source. Open it with a notepad and check carefully to see if anything were wrong in the JavaScript syntax. </strong></p>
+  <p><span class="style1"><strong>Note:</strong></span> You should pay attention to using the quote char in ag_html,
+    be sure to escape it if needed.<br>
+    <span class="style1"><strong>Note:</strong></span> The <code>&lt;%@ page contentType=&quot;text/javascript&quot; %&gt;</code> &nbsp;&nbsp; is JSP coding. If you are using other CGI programming language,
+  like php or asp, you should reference to its own way for how to set the content-type in the http header.<br>
+  <span class="style1"><strong>Note:</strong></span> The JSP code will print out &quot;null&quot; when the column value is NULL in DB, but other cgi like ASP and PHP might not work the same way and you should pay attention to dealing with the null value. The calendar engine will convert a &quot;null&quot; string into a null value automatically, also please remember that the boxit param is required to be a boolean value thus shouldn't be surrounded by the quotes. </p>
+  <h4>Another data source example using PHP and MySQL</h4>
+  <p> 1st, create a database table in MySQL with the following scripts: <br>
+</p>
+  <table cellspacing="1" cellpadding="3">
+    <tr>
+      <td><strong>Code: </strong></td>
+    </tr>
+    <tr>
+      <td><div class="dottedBox">CREATE TABLE `my_agenda` ( <br>
+      `ag_year` smallint NOT NULL, <br>
+      `ag_month` smallint NOT NULL, <br>
+      `ag_day` smallint NOT NULL, <br>
+      `ag_message` varchar(255) default '', <br>
+      `ag_action` varchar(255) default '', <br>
+      `ag_bgcolor` varchar(20) default 'null', <br>
+      `ag_fgcolor` varchar(20) default 'null', <br>
+      `ag_bgimg` varchar(255) default 'null', <br>
+      `ag_boxit` varchar(20) default 'null', <br>
+      `ag_html` varchar(255) default 'null', <br>
+      PRIMARY KEY (`ag_year`,`ag_month`,`ag_day`) <br>
+      ) </div></td>
+    </tr>
+  </table>
+  <br>
+2nd, create a file named agenda.php with the following contents: <br>
+<table cellspacing="1" cellpadding="3">
+  <tr>
+    <td><strong>Code: </strong></td>
+  </tr>
+  <tr>
+    <td><div class="dottedBox">&lt;? <br>
+      header("Content-Type: text/javascript"); <br>
+      <br>
+      $lnk=mysql_connect("&lt;db_hostname&gt;", "&lt;db_user&gt;", "&lt;db_password&gt;"); <br>
+      mysql_select_db("&lt;db_name&gt;",$lnk) or die( "Unable to select database"); <br>
+      $query="SELECT * FROM my_agenda"; <br>
+      $result=mysql_query($query); <br>
+      <br>
+      $num=mysql_numrows($result); <br>
+      mysql_close(); <br>
+      <br>
+      for ($i=0; $i &lt; $num; $i++) { <br>
+      $year=mysql_result($result,$i,"ag_year"); <br>
+      $month=mysql_result($result,$i,"ag_month"); <br>
+      $day=mysql_result($result,$i,"ag_day"); <br>
+      $msg=mysql_result($result,$i,"ag_message"); <br>
+      $action=mysql_result($result,$i,"ag_action"); <br>
+      $bgcolor=mysql_result($result,$i,"ag_bgcolor"); <br>
+      $fgcolor=mysql_result($result,$i,"ag_fgcolor"); <br>
+      $bgimg=mysql_result($result,$i,"ag_bgimg"); <br>
+      $boxit=mysql_result($result,$i,"ag_boxit"); <br>
+      $html=mysql_result($result,$i,"ag_html"); <br>
+      ?&gt; <br>
+      <br>
+      fAddEvent(&lt;?=$year?&gt;,&lt;?=$month?&gt;,&lt;?=$day?&gt;,"&lt;?=$msg?&gt;","&lt;?=$action?&gt;", <br>
+"&lt;?=$bgcolor?&gt;","&lt;?=$fgcolor?&gt;","&lt;?=$bgimg?&gt;","&lt;?=$boxit?&gt;","&lt;?=$html?&gt;"); <br>
+      <br>
+&lt;? <br>
+      } <br>
+      ?&gt; <br>
+      // -- you may append additional javascript here, e.g. fHoliday() -- <br></div></td>
+  </tr>
+</table>
+Please remember to use the real db name, user id and password to replace the placeholders in above code. <br>
+<br>
+Finally, upload the agenda.php to your web server (suppose it's placed at /php-cgi/agenda.php) and replace the agenda.js in the name and id of the &lt;iframe&gt; calendar tag with the full path to agenda.php: <br>
+<table cellspacing="1" cellpadding="3">
+  <tr>
+    <td><strong>Code: </strong></td>
+  </tr>
+  <tr>
+    <td><div class="dottedBox">&lt;iframe name="gToday:normal:/php-cgi/agenda.php" name="gToday:normal:/php-cgi/agenda.php" ...&gt;</div></td>
+  </tr>
+</table>
+<br>
+Now put in some records in the db table and load up your page - you should see the agenda events showing up nicely in the calendar. <br>
+<br>
+Note that you can still append the fHoliday() function, as in agenda.js, to the end of the agenda.php so as to retain the holidays. And in the agenda tutorial you may also find an example written in JSP code. <br>
+<br>
+Last but not least, please be careful if you would like to use double-quote char (") in the strings - you should escape them wisely so as not to mess up the string boundary of javascript. If you were encountering any error, please point your browser directly to the URL of agenda.php, then either "view page source" or view the downloaded file - it should reveal the generated content. Make sure the content is pure valid javascript (no &lt;script&gt; tags allowed), as if it were in an agenda.js file.
+<br>
+<h4>How to pass parameters to the script that generates the agenda file?</h4>
+  <p>If you want to create a calendar that belongs to a user, you may need to pass the user id to the script that generates the agenda file so that the calendar only shows up the events related to that specific user.</p>
+  <p>CalendarXP has already taken it into account and all you need is set the url in the name &amp; id of the calendar tag, as following: </p>
+  <blockquote>
+    <div class="dottedBox" style="width:95%">
+      <p><code>&lt;iframe name=&quot;gToday:normal:agenda.jsp?userId=&lt;%=obj.getUserID()%&gt;&quot; id=&quot;gToday:normal:agenda.jsp?userId=&lt;%=obj.getUserID()%&gt;&quot;<br>
+      ...&gt;&lt;/iframe&gt;<br>
+      </code></p>
+    </div>
+  </blockquote>
+  <p>The above example is using JSP to generate the agenda file, of course you may use Perl, ASP, PHP or whatever else instead.</p>
+  <p><span class="style1"><strong>Note</strong>:</span> you must escape any non-alphabetical chars in the URL, especially the colon char. Running the parameter string through an URL encoding filter and using the transformed string in the name &amp; id of the calendar tag is always a safe way to go. </p>
+  <h4>Share agendas among multiple calendars</h4>
+  <p>Sometimes when you have more than 1 calendar on the same web page, especially when
+     PopCalendar and FlatCalendar are working together, you may
+    need to share the agenda events among them. Since version 7.0 this can be
+    done by setting the agenda parameter of other-than-the-first calendar to &quot;<code>share[&lt;context-name&gt;]</code>&quot;
+    instead of &quot;<code>agenda.js</code>&quot;. <b>In addition, the <code>gbShareAgenda</code>
+    theme option of all shared calendars must be set to <code>true</code>.</b> The following
+    is a good example of agenda sharing between PopCalendarXP and FlatCalendarXP.</p>
+  <blockquote>
+    <div class="dottedBox">
+      <p><code>...</code></p>
+      <p><code>&lt;iframe name=&quot;gToday:normal:share[gfPop]:gfFlat&quot; id=&quot;gToday:normal:share[gfPop]:gfFlat&quot;<br>
+        src=&quot;iflateng.htm&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot;&gt;<br>
+        &lt;a name=&quot;gfFlat_spacer&quot;&gt;&lt;img width=172 height=180&gt;&lt;/a&gt;&lt;/iframe&gt;</code></p>
+      <p><code>...</code></p>
+      <p><code><br>
+        &lt;iframe name=&quot;gToday:supermini:agenda.js:gfPop&quot; id=&quot;gToday:supermini:agenda.js:gfPop&quot;
+        src=&quot;ipopeng.htm&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot;
+        style=&quot;visibility:visible; z-index:999; position:absolute; top:-500px; left:-500px; &quot;&gt;<br>
+        &lt;LAYER name=&quot;gToday:supermini:agenda.js:gfPop&quot; src=&quot;npopeng.htm&quot; background=&quot;npopeng.htm&quot;&gt;
+        &lt;/LAYER&gt;<br>
+        &lt;/iframe&gt;<br>
+        &lt;LAYER name=&quot;gToday:normal:share[gfPop]:gfFlat&quot; src=&quot;nflateng.htm&quot; background=&quot;nflateng.htm&quot;&gt; 
+        &lt;/LAYER&gt; <br>
+        &lt;/BODY&gt;<br>
+        &lt;/HTML&gt;</code></p>
+    </div>
+  </blockquote>
+
+    <p></p>
+
+  <p>Note that the 3rd parameter of the second calendar tag is <code>share[gfPop]</code>,
+    which means to share the agenda loaded by <code>gfPop</code>. Should the agenda
+    get changed by any run-time scripts both calendars would always get the same
+    update automatically, and all you need to do is to call the <code>fRepaint()</code>
+    afterwards to reveal the change in the calendar panel.</p>
+  <p>Another advantage of sharing is that the agenda.js will be loaded only once,
+    no matter how many calendar tags are embedded on the same page. It could save
+    a lot if you had a huge agenda database.</p>
+  <p class="style1"><strong>Note:</strong> When sharing the agenda.js file, it's important to know that any function definition, except fHoliday(), will not be shared, which means you should NOT declare any other functions in the agenda.js. If you really need an utility function, define it in the plugins.js instead. </p>
+  <h4>Load agenda events per month instead of altogether </h4>
+  <p>In certain situation, you may have intensive events in a calendar which may results in a huge agenda.js file. e.g. You have a table in DB that stores everyday events for each user for years, and you only want the calendar to load the events in current month so as not to generate too much network load. How to do it then?</p>
+  <p>Since version 8.2.202, PopCalendarXP has introduced an easy solution for it, as following:</p>
+  <ol>
+    <li>Create a JSP/ASP/PHP page,  here we assume using JSP solution to create one as <code>/jsp/agenda.jsp</code>, that generates the javascript source of the <code>agenda.js</code> by retrieving the events detail from the backend DB. Please refer to the above DB related section for how-to.</li>
+    <li>Move the fHoliday() function from the <code>agenda.jsp</code> to the <code>plugins.js</code> , and append the following code:
+      <div class="dottedBox" style="width:95%">
+        <pre><code>function fOnChange(y,m,d,e) {
+  if (gCurMonth[1]!=m||gCurMonth[0]!=y) fLoadEvents(y,m);          // MUST be the first line of fOnChange
+  ...  
+}
+           
+function fLoadEvents(y,m) {
+  if (fGetEvent(y,m,0)==null) {
+    fAddEvent(y,m,0,&quot;Loaded&quot;); // mark the month as loaded 
+    fLoadScript(&quot;/jsp/agenda.jsp?year=&quot;+y+&quot;&amp;month=&quot;+m);
+  }
+}
+
+fHoliday(y,m,d) {...you need to keep everything inside as is...} </code></pre>
+        <pre><code>... 
+// The 2 lines below MUST sit at page bottom and be the last 2 lines of the plugins.js !!!
+if (gbShareAgenda&amp;&amp;!eval(gsAgShared)) eval(gsAgShared+&quot;=[]&quot;);
+fLoadEvents(gCurMonth[0],gCurMonth[1]); // load data for the initial month </code></pre></div>
+    </li>
+    <li>In the <code>/jsp/agenda.jsp</code> you may have your own code to read the <code>year</code> and <code>month</code> parameters from the http request, and use them to constraint the result set loaded from the backend DB so that only events of the specific month will get generated.</li>
+    <li>Append &quot;<code>if(fRepaint)fRepaint();</code>&quot; to <code>/jsp/agenda.jsp</code> file and make sure it gets generated as the last line of the javascript source. i.e. the generated source (you may test by pointing your browser directly to <code>/jsp/agenda.jsp</code> and select &quot;view page source&quot; ) should look like the following: </li>
+    <div class="dottedBox">
+      <p><code>fAddEvent(...);<br>
+        fAddEvent(...);<br>
+        ... <br>
+      <br>
+      if (fRepaint) fRepaint(); // must be the last line of the generated agenda source </code></p>
+    </div>
+    <li>Modify the calendar tag to remove the &quot;agenda.js&quot; from the name &amp; id, because after the above steps the agenda is loaded per request and we don't need it any more.</li>
+	<div class="dottedBox">
+    <p><code>&lt;iframe name=&quot;gToday:normal::gfPop&quot; id=&quot;gToday:normal::gfPop&quot; ... &gt;&lt;/iframe&gt;</code></p>
+    </div>
+  </ol>
+  <p></p>
+  <p>That's it! Now every time you try to switch a month, the Server Page <code>/jsp/agenda.jsp</code> will be visited with 2 http parameters - <code>year</code> and <code>month</code>. And the value of the <code>year</code> and <code>month</code> represent the month that the calendar will be switching to. All you need is to parse the month value and then load corresponding events from DB table and generate corresponding <code>fAddEvent()</code> calls.</p>
+  <p>This should be easy, isn't it? However, the <code>fLoadScript()</code> call  approach currently is only supported by IE5+(except Mac),  NS6+, Mozilla and Opera7+. For those unsupported browsers  you may consider using server-side browser detection to set the  agenda param  in the name &amp; id (hint: <code>name='gToday:normal:&lt;%=isIE4||isNN4?&quot;agendaFull.jsp&quot;:&quot;&quot;%&gt;:gfFlat'</code> ) so as to load everything at one time. </p>
+  <h4>Another way to load agenda events per month </h4>
+  <p>As <code>XMLHttpRequest</code> object becomes more and more popular, a new option emerges to load scripts into the calendar engine and it can be used to complement the <code>fLoadScript()</code> to load events on demand. </p>
+  <p>All you need is to replace the fLoadEvent() function above with the following code:</p>
+  <ol><div class="dottedBox">
+    <pre><code>var xmlReq = null;
+function fLoadEvents(y,m) {<br>  if (fGetEvent(y,m,0)==null)
+    fAddEvent(y,m,0,&quot;Loaded&quot;); // mark the month as loaded <br>  else<br>    return;
+  var url  = &quot;/jsp/agenda.jsp?year=&quot;+y+&quot;&amp;month=&quot;+m;
+  try {
+    xmlReq = self.XMLHttpRequest?new XMLHttpRequest():new ActiveXObject("Microsoft.XMLHTTP");
+    xmlReq.onreadystatechange=function() {
+      if (xmlReq.readyState == 4 &amp;&amp; xmlReq.status == 200) {
+        eval(xmlReq.responseText);
+      }
+    }
+    xmlReq.open("GET", url, true);
+    if (self.XMLHttpRequest)
+      xmlReq.send(null);
+    else
+      xmlReq.send();
+  } catch (e) {
+    alert(&quot;XMLHttpRequest is not supported.&quot;);
+  }
+}</code></pre>
+  </div>
+  </ol>
+  <p></p>
+  <p class="style1"><strong>XMLHttpRequest is supported by IE5+, Mozilla and Safari 1.2+, and is not accessible when the page is on local file system - which means you have to put it into a web server to test.
+  </strong></p>
+  <h4>Load agenda from external XML file </h4>
+  <p> In additional to load script file,  we can also code a plugin to load agenda events from xml file.<br>
+<br>
+Suppose we have the following agenda.xml file located in the web root: <br>
+  </p>
+  <ol>
+    <div class="dottedBox">
+      <pre>&lt;?xml version="1.0" encoding="ISO-8859-1" ?&gt; <br>&lt;agenda&gt; <br>&lt;event year="2005" month="4" date="1" bgcolor="#00ff00" fgcolor="black" bgimg="" border="gold"&gt; <br>	&lt;tooltip&gt;this is a test&lt;/tooltip&gt; <br>	&lt;action&gt;alert(123)&lt;/action&gt; <br>&lt;/event&gt; <br>&lt;event year="2005" month="1" date="1" bgcolor="green" border="null"&gt; <br>	&lt;tooltip&gt;this is a new test&lt;/tooltip&gt; <br>	&lt;action/&gt; <br>	&lt;html&gt;&lt;![CDATA[ <br>&lt;br&gt; <br>&lt;b&gt;this is a new test&lt;/b&gt; <br>	]]&gt;&lt;/html&gt; <br>&lt;/event&gt; <br>&lt;/agenda&gt;</pre>
+    </div>
+  </ol>
+  <p> To load it, we just need to append the following code in plugins.js : <br>
+  </p>
+  <ol>
+    <div class="dottedBox">
+      <pre>var _xmlReq; <br>function loadXMLDoc(url) { <br>    if (window.XMLHttpRequest) { <br>        _xmlReq = new XMLHttpRequest(); <br>        _xmlReq.onreadystatechange = processXML; <br>        _xmlReq.open("GET", url, true); <br>        _xmlReq.send(null); <br>    } else if (window.ActiveXObject) { <br>        _xmlReq = new ActiveXObject("Microsoft.XMLHTTP"); <br>        if (_xmlReq) { <br>            _xmlReq.onreadystatechange = processXML; <br>            _xmlReq.open("GET", url, true); <br>            _xmlReq.send(); <br>        } <br>    } <br>} <br>
+function processXML() { <br>      if (_xmlReq.readyState == 4) { <br>        if (_xmlReq.status == 200) { <br>            var e=_xmlReq.responseXML.getElementsByTagName("event"); <br>          for (var i=0; i&lt;e.length; i++) { <br>             fAddEvent(parseAttrib(e[i],"year"), parseAttrib(e[i],"month"), parseAttrib(e[i],"date"), <br>             parseText(e[i], "tooltip"), parseText(e[i], "action"), parseAttrib(e[i],"bgcolor"), <br>             parseAttrib(e[i],"fgcolor"), parseAttrib(e[i],"bgimg"), parseAttrib(e[i],"border"), <br>             parseText(e[i], "html")); <br>          } <br>          fRepaint(); <br>        } else { <br>            alert("Please make sure loading agenda.xml from the same web domain, or it won't work due to browser security concern.\n" + <br>                _xmlReq.statusText); <br>        } <br>    } <br>} <br> 
+function parseText(root, tag) { <br>    var ns=root.getElementsByTagName(tag); <br>    if (ns.length==0) return null; <br>    ns=ns[0].childNodes; <br>    if (ns.length==0) return null; <br>    else if (ns.length==1) return ns[0].data; <br>    else return ns[1].data; <br>} <br> 
+function parseAttrib(root, attr) { <br>    var n=root.getAttributeNode(attr); <br>    return n?n.value:null; <br>}</pre>
+    </div>
+  </ol>
+  <p> Then, we can either use fOnload plugin to load the xml: (check __isAS to prevent redundant loading if you have multiple calendars sharing the same agenda)<br>
+  </p>
+  <ol>
+    <div class="dottedBox">
+      <pre>////////////////// Calendar fOnload Handler /////////////////////// <br>// It's triggered when the calendar engine is fully loaded by the browser. <br>// NOTE: DO NOT define this handler unless you really need to use it. <br>//////////////////////////////////////////////////////////////////// <br>function fOnload() { <br>    if (!__isAS) loadXMLDoc("/agenda.xml"); <br>}
+</pre>
+    </div>
+  </ol>
+  <p> Or load it externally from the onload event in the body of the containing page: (suppose the calendar context name is gfPop) <br>
+  </p>
+  <ol>
+    <div class="dottedBox"><code>
+&lt;body onload="gfPop.loadXMLDoc('/agenda.xml')"&gt;</code></div>
+  </ol>
+  <p> Note: you may still need the agenda.js file, as the only thing left inside is the fHoliday function. All fAddEvent calls can now be represented in XML. <br>
+    <span class="style1"><strong>NOTE: If you would like to test the XML loading, please do it on a real web server and place the xml in the same web domain. Trying to load agenda from local file system or another domain will fail because nowadays modern browsers do not allow loading resources from outside the current web domain.</strong></span><br>
+ </p>
+  <hr size="1">
+  <div align="right"><font size=-2><em>Copyright&copy; 2003-2007 Idemfactor Solutions,
+    Inc. All rights reserved.</em></font></div>
+  <p>&nbsp;</p>
+</div>
+
+</body>
+</html>
