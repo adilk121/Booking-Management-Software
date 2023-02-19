@@ -156,7 +156,7 @@ $rec=mysql_fetch_array($data);
 @extract($rec);
 }else{
 
-echo $sql="select * from  tbl_emp_increment where 1 and emp_in_id='$_REQUEST[empid]'";
+echo $sql="select * from  tbl_emp_increment where emp_in_id='$_REQUEST[empid]'";
 
 $data=db_query($sql);
 $rec=mysql_fetch_array($data);
