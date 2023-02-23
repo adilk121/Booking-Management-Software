@@ -68,6 +68,7 @@
         padding-bottom:5px;
         padding-left:15px;
         padding-right:15px;
+	    
     }
     .btn33:hover{
         background-color:#00aeef;
@@ -86,7 +87,7 @@
 <?php
 
  $package_id=$_REQUEST['pack_id'];
-
+// new id
  
  
  if(isset($_POST['final_submit'])){
