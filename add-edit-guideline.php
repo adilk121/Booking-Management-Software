@@ -48,7 +48,7 @@ suggest_emp(v,field,divName);
 	
 
 <?php
-
+// file Id
 if(!empty($_REQUEST['guide'])){
 $sql="select * from tbl_guideline where 1 and guide_id='$_REQUEST[guide]'";
 $rec_guide=mysql_fetch_array(db_query($sql));
