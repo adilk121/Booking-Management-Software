@@ -40,7 +40,7 @@ if(!empty($_REQUEST['dept'])){
 $sql="select * from tbl_dept where 1 and dept_id='$_REQUEST[dept]'";
 $rec_guide=mysql_fetch_array(db_query($sql));
 }
-
+// Department ID
 
 if(isset($_REQUEST['update'])){
 
