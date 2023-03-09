@@ -1,4 +1,6 @@
-<?php include('header.php'); ?>
+<?php include('header.php');
+//Old file header
+?>
 <!--
 <script type="text/javascript" src="fancybox/jquery-1.4.1.min.js"></script>
 <script type="text/javascript" src="fancybox/jquery.fancybox-1.3.0.pack.js"></script>
