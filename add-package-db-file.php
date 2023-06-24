@@ -1,4 +1,5 @@
 <?php require_once("includes/dbsmain.inc.php");  ?>
+<?php //header?>
 <?php  
 //File in command
 
