@@ -1,5 +1,5 @@
 <?php include 'header.php'; ?>
-
+<?php //header?>
 <link rel="stylesheet" href="excelToSql/css/bootstrap.min.css">
 		<link rel="stylesheet" href="excelToSql/css/bootstrap-responsive.min.css">
 		<link rel="stylesheet" href="excelToSql/css/bootstrap-custom.css">
