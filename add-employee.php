@@ -1,4 +1,5 @@
 <?php require_once("includes/dbsmain.inc.php");  ?>
+<?php //header?>
 <?php include('header.php'); ?>
 
 <script type="text/javascript" src="fancybox/jquery-1.4.1.min.js"></script>
